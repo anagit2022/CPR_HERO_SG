@@ -1,376 +1,664 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;   /* ✨ disables all scrolling */
+/* ============================================
+   ROOT VARIABLES
+   ============================================ */
+:root {
+  --orange:      #F25C3B;
+  --skin:        #FFC5B7;
+  --blue:        #91C1FF;
+  --white:       #FFFFFF;
+  --text-dark:   #2C2C2C;
+  --text-light:  #FFFFFF;
+  --yes-green:   #6CC04A;
+  --no-red:      #FF4E4E;
+  --promise-gold:#FFD166;
+  --shadow:      rgba(0,0,0,0.15);
+
+  --font-display: 'Fredoka One', cursive;
+  --font-body:    'Nunito', sans-serif;
 }
 
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
+/* ============================================
+   SCREEN TYPES
+   ============================================ */
 .screen {
   width: 100vw;
   height: 100vh;
-  background: #F25C3B;   /* your orange background */
-  display: flex;
+  background: var(--orange);
+  display: none;               /* hidden by default */
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  padding: 4vw;
 }
-.skinscreen { 
-width: 100vw; 
-height: 100vh; 
-background: #FFC5B7; /* your orange background */ 
-display: none; 
-flex-direction: column; 
-align-items: center; 
-justify-content: center; 
-position: relative; }
-.blueskinscreen { 
-width: 100vw; 
-height: 100vh; 
-background: #91C1FF; /* your orange background */ 
-display: none; 
-flex-direction: column; 
-align-items: center; 
-justify-content: center; 
-position: relative; }
 
-
-#gender  {
+.skinscreen {
+  width: 100vw;
+  height: 100vh;
+  background: var(--skin);
+  display: none;
   flex-direction: column;
-  gap: 20px; /* space between image and buttons */
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 4vw;
 }
 
-.dangerbubble img {
-  width: 80vw;
-  max-width: 380px;
-  height: auto;
-  margin-top: 10vh;
-}
-#nbbub,#notsafeintrobubble{
-  display: flex;
+.blueskinscreen {
+  width: 100vw;
+  height: 100vh;
+  background: var(--blue);
+  display: none;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  width: 80vw;
-  max-width: 380px;
-  margin-bottom: -20vh;
-  height: auto;
- 
+  position: relative;
+  padding: 4vw;
 }
-#dpromisesealrajabubble,#dpromisesealranibubble{
-  display: flex;
-  width: 80vw;
-  left: 5vw;
-  max-width: 380px;
-  margin-bottom: -5vh;
-  
- 
+
+/* First screen visible on load */
+#begin1 { display: flex; }
+
+/* ============================================
+   SCREEN TAG (replaces title bar images)
+   ============================================ */
+.screen-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.18);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(16px, 5vw, 22px);
+  padding: 3vw 5vw;
+  letter-spacing: 0.03em;
+  text-align: left;
 }
-#requestaedimgbubble{
-display: flex;
-  justify-content: center;
-  width: 80vw;
-  max-width: 380px;
-  margin-bottom: -40vh;
-  height: auto;
+
+/* Tag variant for skin-colored screens */
+.skin-tag {
+  background: rgba(0,0,0,0.10);
+  color: var(--text-dark);
 }
-#cprbubble,#startcpr{
-display: flex;
-  justify-content: center;
-  width: 90vw;
+
+/* ============================================
+   SPEECH BUBBLE (replaces bubble images)
+   ============================================ */
+.speech-bubble {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 5vw 6vw;
+  width: 82vw;
   max-width: 380px;
-  margin-bottom: -25vh;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 4.5vw, 19px);
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.5;
+  box-shadow: 0 6px 20px var(--shadow);
+  position: relative;
+  margin-top: 14vw;   /* space below the tag bar */
+  text-align: center;
+}
+
+/* Little tail pointing down */
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top-color: var(--white);
+}
+
+/* Promise-variant bubble (positioned higher for hero image) */
+.speech-bubble--promise {
+  margin-top: 14vw;
+  margin-bottom: 2vw;
+}
+
+/* ============================================
+   SCREEN TITLE (large centered heading)
+   ============================================ */
+.screen-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 8vw, 38px);
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 6vw;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* ============================================
+   HERO CHARACTER
+   ============================================ */
+.hero-char {
+  position: absolute;
+  top: 5vh;
+  right: 4vw;
+  width: clamp(60px, 20vw, 100px);
   height: auto;
 }
 
-.danger-buttons,.gender-buttons {
+/* ============================================
+   FACE IMAGE (for skin screens)
+   ============================================ */
+.face {
+  width: 80vw;
+  max-width: 340px;
+  height: auto;
+  border-radius: 20px;
+}
+
+/* ============================================
+   BUTTONS — PRIMARY (begin / start)
+   ============================================ */
+.btn-primary {
+  background: var(--white);
+  color: var(--orange);
+  border: none;
+  border-radius: 50px;
+  padding: clamp(14px, 4vw, 18px) clamp(40px, 12vw, 70px);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 6vw, 28px);
+  cursor: pointer;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.18);
+  transition: transform 0.1s, box-shadow 0.1s;
+  margin-top: 6vw;
+}
+
+.btn-primary:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.18);
+}
+
+/* ============================================
+   BUTTONS — GENDER
+   ============================================ */
+.gender-buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 20px;          /* space between yes and no buttons */
-  width: 100%;
-  margin-top: 10vh;   /* THIS moves buttons DOWN from bubble */
-  margin-bottom: 2vh; /* THIS controls distance from bottom of screen */
+  gap: 5vw;
+  margin-top: 4vw;
 }
+
+.btn-gender {
+  background: var(--white);
+  color: var(--orange);
+  border: none;
+  border-radius: 20px;
+  padding: clamp(16px, 5vw, 22px) clamp(24px, 8vw, 40px);
+  font-family: var(--font-display);
+  font-size: clamp(18px, 5.5vw, 26px);
+  cursor: pointer;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.18);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-gender:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.18);
+}
+
+/* ============================================
+   BUTTONS — YES / NO
+   ============================================ */
+.danger-buttons,
 .response-buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 24px;          /* space between yes and no buttons */
+  gap: 5vw;
   width: 100%;
-  margin-top:40vh;   /* THIS moves buttons DOWN from bubble */
-  margin-bottom: -8vh; /* THIS controls distance from bottom of screen */
-}
-#nextBtn,#nextwinBtn,#nextaedBtn,#nextambBtn,#nextlatefastBtn,#nextlateslowBtn,#nextlateinactiveBtn {
-  position: absolute;
-  top: 5vh;       /* distance from top */
-  right: 5vw;     /* distance from right */
-  width: 20vw   /* responsive size */
-  cursor: pointer;
-}
-#nextvBtn {
-  position: absolute;
-  bottom: 8vh;       /* distance from top */
-  right: 10vw;     /* distance from right */
-  width: 20vw   /* responsive size */
-  cursor: pointer;
-}
-#nextpBtn {
-  position: absolute;
-  bottom: 20vh;       /* distance from top */
-  right: 10vw;     /* distance from right */
-  width: 20vw   /* responsive size */
-  cursor: pointer;
-}
-#nextprBtn,#nextaBtn,#nextc1,#nextc2,#nextc3,#nextc4{
-  position: absolute;
-  bottom: 14vh;       /* distance from top */
-  right: 10vw;     /* distance from right */
-  width: 20vw   /* responsive size */
-  cursor: pointer;
-}
-#dpromiseinstruc,#dpromisepress,#dpromiseseal,#dranipromisepress,#rranipromisepress,#rrajapromisepress,#bpromisepress,#branipromisepress,#wranipromisepress,#wpromisepress {
-  position: absolute;
-  bottom: 5vh;       /* distance from top */
-  right: 10vw;     /* distance from right */
-  width: 20vw   /* responsive size */
-  justify-content: center;
-  cursor: pointer;
-}
-#girl{
-  position: absolute;
-  top: 5vh;       /* distance from top */
-  right: 5vw;     /* distance from right */
-  width: 20vw   /* responsive size */
+  margin-top: 8vw;
 }
 
-.checkd{
-  width: 90%;
-  max-width: 350px;
+.btn-yes,
+.btn-no {
+  border: none;
+  border-radius: 50px;
+  padding: clamp(14px, 4vw, 18px) clamp(30px, 9vw, 50px);
+  font-family: var(--font-display);
+  font-size: clamp(18px, 5.5vw, 24px);
+  cursor: pointer;
+  color: var(--white);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-yes {
+  background: var(--yes-green);
+  box-shadow: 0 6px 0 #4a9932;
+}
+
+.btn-no {
+  background: var(--no-red);
+  box-shadow: 0 6px 0 #cc3030;
+}
+
+.btn-yes:active,
+.btn-no:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+/* ============================================
+   BUTTON — NEXT
+   ============================================ */
+.btn-next {
+  position: absolute;
+  bottom: 8vh;
+  right: 6vw;
+  background: var(--white);
+  color: var(--orange);
+  border: none;
+  border-radius: 50px;
+  padding: clamp(12px, 3.5vw, 16px) clamp(22px, 7vw, 36px);
+  font-family: var(--font-display);
+  font-size: clamp(16px, 5vw, 22px);
+  cursor: pointer;
+  box-shadow: 0 5px 0 rgba(0,0,0,0.15);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-next:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+/* Next button variants for non-orange screens */
+.btn-next--skin {
+  color: var(--orange);
+  background: var(--white);
+}
+
+.btn-next--blue {
+  color: var(--blue);
+  background: var(--white);
+}
+
+/* ============================================
+   PROMISE SCREENS
+   ============================================ */
+.promise-prompt {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 5vw, 22px);
+  color: var(--white);
+  margin-top: 4vw;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.95); }
+}
+
+.btn-promise {
+  position: absolute;
+  bottom: 8vh;
+  right: 6vw;
+  background: var(--promise-gold);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 50px;
+  padding: clamp(12px, 3.5vw, 16px) clamp(20px, 6vw, 32px);
+  font-family: var(--font-display);
+  font-size: clamp(16px, 5vw, 22px);
+  cursor: pointer;
+  box-shadow: 0 5px 0 #e0a800;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-promise:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.promise-sealed-badge {
+  font-size: clamp(60px, 18vw, 100px);
+  margin-top: 4vw;
+  animation: pop 0.4s ease-out;
+}
+
+@keyframes pop {
+  0%   { transform: scale(0); }
+  70%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.btn-again {
+  position: absolute;
+  bottom: 8vh;
+  background: var(--white);
+  color: var(--orange);
+  border: none;
+  border-radius: 50px;
+  padding: clamp(12px, 3.5vw, 16px) clamp(22px, 7vw, 36px);
+  font-family: var(--font-display);
+  font-size: clamp(16px, 5vw, 20px);
+  cursor: pointer;
+  box-shadow: 0 5px 0 rgba(0,0,0,0.15);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-again:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+/* ============================================
+   CPR SCREENS
+   ============================================ */
+.cpr-gif {
+  width: 82vw;
+  max-width: 360px;
   height: auto;
+  border-radius: 20px;
+  margin-top: 14vw;
+  box-shadow: 0 4px 16px var(--shadow);
+}
 
-  margin-bottom: 40px;
-  margin-top: -120px;   /* move upward */
+.cpr-instruction {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 4vw 5vw;
+  width: 82vw;
+  max-width: 360px;
+  font-family: var(--font-body);
+  font-size: clamp(14px, 4vw, 17px);
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin-top: 4vw;
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+/* ============================================
+   CPR START CARD
+   ============================================ */
+.cpr-start-card {
+  background: var(--white);
+  border-radius: 28px;
+  padding: 8vw 8vw;
+  width: 82vw;
+  max-width: 360px;
+  text-align: center;
+  box-shadow: 0 8px 30px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4vw;
+}
+
+.cpr-start-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 10vw, 50px);
+  color: var(--orange);
+}
+
+.cpr-start-sub {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 4.5vw, 18px);
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.btn-start-cpr {
+  background: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  padding: clamp(14px, 4vw, 18px) clamp(30px, 10vw, 50px);
+  font-family: var(--font-display);
+  font-size: clamp(20px, 6vw, 28px);
+  cursor: pointer;
+  box-shadow: 0 6px 0 #c0412a;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-start-cpr:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+/* ============================================
+   OUTCOME LABEL (win / amb / aed / late)
+   ============================================ */
+.outcome-label {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 5.5vw, 26px);
+  color: var(--text-dark);
+  text-align: center;
+  margin-top: 5vw;
+  padding: 3vw 5vw;
+  background: rgba(255,255,255,0.6);
+  border-radius: 16px;
+  max-width: 80vw;
+}
+
+.outcome-label.late {
+  color: #c0322a;
+  background: rgba(255,255,255,0.75);
+}
+
+/* ============================================
+   REQUEST AED IMAGE
+   ============================================ */
+.request-aed-img {
+  width: 70vw;
+  max-width: 300px;
+  height: auto;
+  margin-top: 4vw;
+}
+
+/* ============================================
+   INTRO BUBBLE (kept as image)
+   ============================================ */
+.introbubble {
+  width: 82vw;
+  max-width: 380px;
+  height: auto;
+  cursor: pointer;
 }
 
 .bubble {
-  width: 100%;          /* responsive width */
-  max-width: 350px;    /* never grow too big */
+  width: 82vw;
+  max-width: 380px;
   height: auto;
-  margin-bottom: 40px; /* space above button */
+  margin-bottom: 4vw;
 }
-.begin-btn {
-  width: 100%;
-  max-width: 250px;
+
+/* ============================================
+   CALL SCREEN CONTROLS
+   ============================================ */
+.call-ctrl-btn {
+  width: 18vw;
+  max-width: 80px;
   height: auto;
   cursor: pointer;
 }
-.startBtn {
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-  cursor: pointer;
-}
-#practiceagainbtn,#practiceagainbtnraja,#practiceagainbtnrani{
-  position: absolute;
-    bottom: 15vh;      /* Distance from bottom */
-    right: 22vw;      /* Distance from right */
-    width: 100%;      /* Button size */
-    max-width: 200px;
-    cursor: pointer;
-    z-index: 10; 
-}
 
-.screen {
-  display: none;
-}
-#responseTitle,#dangerTitle,#breathTitle,#promiseTitle,#requestaedTitle,#call112title,#startcpr { 
-position: absolute; 
-top: 5vh; 
-left: 5vw; } 
-#begin1 { 
-display: flex; /* show first screen by default */ 
-}
-
-/* ========================================
-   DIALPAD SCREEN STYLES
-   ======================================== */
+/* ============================================
+   DIAL PAD (unchanged from original)
+   ============================================ */
 #dial112 {
-    font-family: 'Albert Sans', Arial, sans-serif;
-}
-.dial-header {
-    position: absolute;
-    top: 5vh;
-    left: 5vw;
-    color: white;
-}
-
-.dial-logo {
-    font-size: 56px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.dial-header-text {
-    font-size: 18px;
-    line-height: 1.5;
+  font-family: var(--font-body);
 }
 
 .ambulance-card {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    margin-bottom: 30px;
-    min-height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 70vw;
-    max-width: 300px;
-    position: absolute;
-    top: 18vh;
+  background: var(--white);
+  border-radius: 20px;
+  padding: 5vw;
+  text-align: center;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70vw;
+  max-width: 300px;
+  position: absolute;
+  top: 18vh;
+  box-shadow: 0 4px 16px var(--shadow);
 }
 
 .ambulance-label {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 10px;
+  font-size: clamp(12px, 3.5vw, 16px);
+  color: #888;
+  margin-bottom: 2vw;
+  font-weight: 600;
 }
 
 .ambulance-number {
-    font-size: 64px;
-    font-weight: bold;
-    color: #FF6B4A;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 14vw, 64px);
+  color: var(--orange);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ambulance-number.empty {
-    color: #ddd;
-    font-size: 24px;
+  color: #ddd;
+  font-size: clamp(18px, 5vw, 24px);
 }
 
-/* Keypad Grid */
 .keypad {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2vw;      /* responsive spacing */
-    position: absolute;
-    top: 42vh;
-    width: 85vw;
-    max-width: 350px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vw;
+  position: absolute;
+  top: 42vh;
+  width: 85vw;
+  max-width: 350px;
 }
 
-/* Key Buttons */
 .key {
-    background: white;
-    border: none;
-    border-radius: 50%;
-    width: 14vw;         /* responsive size */
-    height: 14vw;        /* responsive size */
-    max-width: 90px;     /* optional safety limit */
-    max-height: 90px;
-    font-size: 8vw;      /* responsive font */
-    color: #FF6B4A;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-    margin: 0 auto;
-    transition: all 0.2s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: var(--white);
+  border: none;
+  border-radius: 50%;
+  width: 14vw;
+  height: 14vw;
+  max-width: 90px;
+  max-height: 90px;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 7vw, 32px);
+  color: var(--orange);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px var(--shadow);
+  transition: transform 0.1s;
+  border: none;
 }
 
-/* Label under number */
+.key:active {
+  transform: scale(0.92);
+}
+
 .key-label {
-    font-size: 2.3vw;   /* responsive text */
-    margin-top: -1vw;
-    color: #999;
+  font-family: var(--font-body);
+  font-size: clamp(7px, 2.5vw, 11px);
+  color: #aaa;
+  margin-top: -1vw;
 }
 
-/* Call / Delete buttons row */
 .button-row {
-    display: flex;
-    justify-content: center;
-    gap: 3vw;       /* responsive spacing */
-    position: absolute;
-    bottom: 16vh;
-  margin-top: 10vh;
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+  position: absolute;
+  bottom: 16vh;
 }
-
 
 .delete-button {
-    background: white;
-    border: none;
-    border-radius: 50%;
-    width: 14vw;             /* responsive */
-    height: 14vw;            /* responsive */
-    max-width: 90px;         /* optional cap */
-    max-height: 90px;
-    font-size: 7vw;          /* responsive */
-    cursor: pointer;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    transition: all 0.2s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: var(--white);
+  border: none;
+  border-radius: 50%;
+  width: 14vw;
+  height: 14vw;
+  max-width: 90px;
+  max-height: 90px;
+  font-size: clamp(18px, 7vw, 30px);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px var(--shadow);
+  transition: transform 0.1s;
 }
 
+.delete-button:active { transform: scale(0.92); }
 
 .call-button {
-    background: #B6DB54;
-    border: none;
-    border-radius: 50%;
-    width: 14vw;             /* responsive */
-    height: 14vw;            /* responsive */
-    max-width: 90px;         /* optional safety limit */
-    max-height: 90px;
-    font-size: 7vw;          /* responsive */
-    cursor: pointer;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    transition: all 0.2s;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #B6DB54;
+  border: none;
+  border-radius: 50%;
+  width: 14vw;
+  height: 14vw;
+  max-width: 90px;
+  max-height: 90px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px var(--shadow);
+  transition: transform 0.1s, background 0.2s;
 }
 
-/* image inside button */
-.call-icon {
-    width: 80px;
-}
-
-/* hover + press animations */
-.call-button:hover {
-    background: #A5CA43;
-    transform: scale(1.05);
-}
-
-.call-button:active {
-    transform: scale(0.95);
-}
-
-/* disabled state */
+.call-button:active  { transform: scale(0.92); }
+.call-button:hover   { background: #a5ca43; }
 .call-button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    opacity: 0.5;
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
+
+.call-icon { width: clamp(30px, 9vw, 60px); }
+
+/* ============================================
+   P5 CANVAS SCREEN
+   ============================================ */
 #p5Screen {
-      width: 100vw;
-      height: 100vh;
-      display: none;     /* hidden initially */
-      position: relative;
-      background: #FFC5B7;
-    }
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: relative;
+  background: var(--skin);
+}
 
+/* ============================================
+   START BUTTON (on intro screen)
+   ============================================ */
+.start-button {
+  margin-top: 6vw;
+}
 
-
+/* ============================================
+   GENDER SCREEN LAYOUT
+   ============================================ */
+#gender {
+  gap: 4vw;
+}
