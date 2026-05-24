@@ -662,3 +662,34 @@ html, body {
 #gender {
   gap: 4vw;
 }
+
+/* ============================================================
+   BUBBLE WRAP — overlay real text on a bubble PNG shape
+   Only used on latefast and lateslow promise screens
+============================================================ */
+.bubble-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.bubble-bg {
+  display: block;
+  width: 80vw;
+  max-width: 380px;
+  height: auto;
+}
+
+.bubble-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  text-align: center;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: clamp(13px, 3.8vw, 17px);
+  font-weight: 700;
+  color: #2C2C2C;
+  line-height: 1.4;
+  margin: 0;
+}
