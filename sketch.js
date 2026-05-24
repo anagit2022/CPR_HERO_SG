@@ -1080,11 +1080,17 @@ function handle_performance() {
         p5Screen.style.display = "none";
         latefast.style.display = "flex";
         lateaud.play();
+        // Inject live score into all latefast bubble text elements
+        const fastMsg = `You were too fast! You got ${good_compression} / ${maxTotalCompressions} good compressions.`;
+        document.querySelectorAll("#latefastText").forEach(el => el.textContent = fastMsg);
       } else if (slowcount > fastcount) {
         currentState = "lateslow";
         p5Screen.style.display = "none";
         lateslow.style.display = "flex";
         lateaud.play();
+        // Inject live score into all lateslow bubble text elements
+        const slowMsg = `You were too slow! You got ${good_compression} / ${maxTotalCompressions} good compressions.`;
+        document.querySelectorAll("#lateslowText").forEach(el => el.textContent = slowMsg);
       }
     }
   }
