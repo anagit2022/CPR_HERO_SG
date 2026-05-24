@@ -5,704 +5,691 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <meta charset="utf-8" />
-
   </head>
   <body>
+
+    <!-- ========== AUDIO ELEMENTS (unchanged) ========== -->
     <audio id="introAudio" src="ElevenLabs_2025-06-15T03_03_50_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
     <audio id="checkdAudio" src="ElevenLabs_2025-06-15T03_04_45_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
     <audio id="dnotsafeAudio" src="ElevenLabs_2025-06-15T05_45_53_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
     <audio id="cantdsafe" src="ElevenLabs_2025-11-04T08_34_33_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
     <audio id="promisedaud" src="ElevenLabs_2025-11-04T07_34_48_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
     <audio id="promisejingle" src="mixkit-happy-bells-notification-937.wav"></audio>
-    <audio id = "test" src = "ElevenLabs_2026-03-24T01_40_03_Alice - Clear, Engaging Educator_pre_sp100_s50_sb75_v3.mp3"></audio>
+    <audio id="test" src="ElevenLabs_2026-03-24T01_40_03_Alice - Clear, Engaging Educator_pre_sp100_s50_sb75_v3.mp3"></audio>
     <audio id="checkrAudio" src="check_for_response.mp3"></audio>
     <audio id="did_spongy_respond" src="did_spongy_respond.mp3"></audio>
-     <audio id="check_if_breathing" src="check_if_breathing.mp3"></audio>
-    <audio id="could_you_see_breathing" src="could_you_see_breathing.mp3"></audio> 
-    <audio id="breathingtype" src="ElevenLabs_2025-06-18T03_04_36_Alice_pre_sp100_s50_sb75_v3.mp3"></audio> 
+    <audio id="check_if_breathing" src="check_if_breathing.mp3"></audio>
+    <audio id="could_you_see_breathing" src="could_you_see_breathing.mp3"></audio>
+    <audio id="breathingtype" src="ElevenLabs_2025-06-18T03_04_36_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
     <audio id="gaspAudio" src="gasping.m4a"></audio>
     <audio id="normalbreathAudio" src="normal_breath_sounds (1).mp3"></audio>
     <audio id="requestaedaud" src="ElevenLabs_2025-11-04T11_58_20_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
     <audio id="call112" src="call995.mp3"></audio>
-    
-   <div class="screen" id="begin1">
-  <img src="beginbub.png"class="bubble"  />
-  <img src="beginbtn.png" class="beginbutton"id="beginBtn" />
-</div>
 
-<div class="screen" id="gender">
-  <img src="selectrajarani.png"  />
-  
-  <div class="gender-buttons">
-    <img src="rajabutton.png" id="rajaBtn" />
-    <img src="ranibutton.png" id="raniBtn" />
-  </div>
-  </div>
-<div class="screen" id="intro">
-  <img src="intro (2).png"class="introbubble" id="beginBubBtn" />
-  <div class="start-button">
-    <img src="start (5).png" id="startBtn" />
-</div>
- </div>
-<div class="screen" id="checkdanger">
-  <div class = "checkdtitle">
-  <img src="checkfordanger.png" id="dangerTitle" />
-  </div>
-  <div class = "dangerbubble">
-    <img src="dangerbub-1.png"  />
-  </div>
-  <div class="danger-buttons">
-    <img src="yesbutton.png" id="dyesBtn" />
-    <img src="nobutton.png" id="dnoBtn" />
-  </div>
-</div>
+    <!-- ========== SCREEN 1: BEGIN ========== -->
+    <div class="screen" id="begin1">
+      <img src="beginbub.png" class="bubble" />
+      <button class="btn-primary" id="beginBtn">Let's Go! 🚀</button>
+    </div>
+
+    <!-- ========== SCREEN 2: GENDER SELECT ========== -->
+    <div class="screen" id="gender">
+      <h1 class="screen-title">Who are you helping?</h1>
+      <div class="gender-buttons">
+        <button class="btn-gender" id="rajaBtn">👦 Raja</button>
+        <button class="btn-gender" id="raniBtn">👧 Rani</button>
+      </div>
+    </div>
+
+    <!-- ========== SCREEN 3: INTRO ========== -->
+    <div class="screen" id="intro">
+      <img src="intro (2).png" class="introbubble" id="beginBubBtn" />
+      <button class="btn-primary" id="startBtn">Start ▶</button>
+    </div>
+
+    <!-- ========== SCREEN 4: CHECK DANGER ========== -->
+    <div class="screen" id="checkdanger">
+      <div class="screen-tag">Check for Danger</div>
+      <div class="speech-bubble">
+        Is the area around Spongy safe for you to approach?
+      </div>
+      <div class="danger-buttons">
+        <button class="btn-yes" id="dyesBtn">✓ Yes</button>
+        <button class="btn-no" id="dnoBtn">✗ No</button>
+      </div>
+    </div>
+
+    <!-- ========== SCREEN 5: DANGER NOT SAFE ========== -->
     <div class="screen" id="dnotsafeq">
-      <img src="checkfordanger.png" id="dangerTitle" />
-      <img src="dnotsafebub.png"id ="notsafeintrobubble" />
+      <div class="screen-tag">Check for Danger</div>
+      <div class="speech-bubble">
+        The area isn't safe right now. Can you make it safe?
+      </div>
+      <div class="response-buttons">
+        <button class="btn-yes" id="nowsafeBtn">✓ Now Safe</button>
+        <button class="btn-no" id="cantsafeBtn">✗ Can't Make Safe</button>
+      </div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="nowsafe.png" id="nowsafeBtn" />
-    <img src="cannotsafe.png" id="cantsafeBtn" />
-  </div>
-</div> 
-</div>
-<div class="screen" id="dcantsafe">
-      <img src="checkfordanger.png" id="dangerTitle" />
-      <img src="can'tsafebub.png"id ="notsafeintrobubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== SCREEN 6: CAN'T MAKE SAFE ========== -->
+    <div class="screen" id="dcantsafe">
+      <div class="screen-tag">Check for Danger</div>
+      <div class="speech-bubble">
+        Stay back and call for help. Do not put yourself in danger!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-next" id="nextpBtn">Next ›</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="nextvertical.png" id="nextpBtn" />
-  </div>
-</div>
-<div class="screen" id="promisedraja">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="dpromisesealbub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: DANGER - RAJA ========== -->
+    <div class="screen" id="promisedraja">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for danger before helping!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promisedrajapress">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="dpromisesealbub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="promisedrajapress">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for danger before helping!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="dpromisepress">🤝 I Promise!</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="dpromisepress" />
-  </div>
-</div>      
-<div class="screen" id="promisesealedraja">
-      <img src="promisesealedrajatitleeng.png" id="promiseTitle" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SEALED: RAJA ========== -->
+    <div class="screen" id="promisesealedraja">
+      <div class="screen-tag">Promise Sealed! 🌟</div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-sealed-badge">🤝</div>
+      <button class="btn-again" id="practiceagainbtnraja">↩ Practice Again</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promiseseaoedhands.png"id ="dpromiseseal" />
-  </div>
-  <img src="practice again button.png"id ="practiceagainbtnraja" />
-</div> 
-  
-<div class="screen" id="promisedrani">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="dranipromisesealbub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: DANGER - RANI ========== -->
+    <div class="screen" id="promisedrani">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for danger before helping!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promisedranipress">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="dranipromisesealbub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="promisedranipress">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for danger before helping!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="dranipromisepress">🤝 I Promise!</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="dranipromisepress" />
-  </div>
-</div>       
-<div class="screen" id="promisesealedrani">
-      <img src="promisesealedranititleeng.png" id="promiseTitle" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SEALED: RANI ========== -->
+    <div class="screen" id="promisesealedrani">
+      <div class="screen-tag">Promise Sealed! 🌟</div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-sealed-badge">🤝</div>
+      <button class="btn-again" id="practiceagainbtnrani">↩ Practice Again</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promiseseaoedhands.png"id ="dpromiseseal" />
-  </div>
-  <img src="practice again button.png"id ="practiceagainbtnrani" />
-</div> 
-<div class="skinscreen" id="checkresponse">
-      <img src="cresponse.png" id="responseTitle" />
-      <img src="faceonly.png"class="face" />
-</div>
+    <!-- ========== SCREEN: CHECK RESPONSE (listening) ========== -->
+    <div class="skinscreen" id="checkresponse">
+      <div class="screen-tag skin-tag">Check for Response</div>
+      <img src="faceonly.png" class="face" />
+    </div>
 
-  
-<div class="screen" id="checkresponseq">
-      <img src="cresponse.png" id="responseTitle" />
-      <img src="responsequestionbub.png"class="introbubble" />
+    <!-- ========== SCREEN: CHECK RESPONSE QUESTION ========== -->
+    <div class="screen" id="checkresponseq">
+      <div class="screen-tag">Check for Response</div>
+      <div class="speech-bubble">
+        Did Spongy respond to you?
+      </div>
+      <div class="response-buttons">
+        <button class="btn-yes" id="ryesBtn">✓ Yes</button>
+        <button class="btn-no" id="rnoBtn">✗ No</button>
+      </div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="yesbutton.png" id="ryesBtn" />
-    <img src="nobutton.png" id="rnoBtn" />
-  </div>
-</div>
-<div class="skinscreen" id="awake">
-      <img src="awake.gif"class="face" />
-  <div class="next-button">
-    <img src="next.png" id="nextBtn" />
-  </div>
-      
-</div>
-<div class="screen" id="promiserrani">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="promiserranibub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== SCREEN: AWAKE ========== -->
+    <div class="skinscreen" id="awake">
+      <img src="awake.gif" class="face" />
+      <button class="btn-next btn-next--skin" id="nextBtn">Next ›</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiserranipress">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="promiserranibub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: RESPONSE - RANI ========== -->
+    <div class="screen" id="promiserrani">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for response first!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="rranipromisepress" />
-  </div>
-</div>       
-<div class="screen" id="promisesealedrani">
-      <img src="promisesealedranititleeng.png" id="promiseTitle" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="promiserranipress">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for response first!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="rranipromisepress">🤝 I Promise!</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promiseseaoedhands.png"id ="dpromiseseal" />
-  </div>
-  <img src="practice again button.png"id ="practiceagainbtn" />
-</div> 
-  
-  <div class="screen" id="promiserraja">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="promiseresponsebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: RESPONSE - RAJA ========== -->
+    <div class="screen" id="promiserraja">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for response first!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiserrajapress">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="promiseresponsebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="promiserrajapress">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for response first!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="rrajapromisepress">🤝 I Promise!</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="rrajapromisepress" />
-  </div>
-</div>       
-<div class="screen" id="promisesealedraja">
-      <img src="promisesealedrajatitleeng.png" id="promiseTitle" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== SCREEN: RESPONDED ========== -->
+    <div class="screen" id="responded">
+      <div class="screen-tag">Check for Response</div>
+      <div class="speech-bubble">
+        Great! Spongy is conscious and breathing. Stay with them and monitor until help arrives.
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-next" id="nextprBtn">Next ›</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promiseseaoedhands.png"id ="dpromiseseal" />
-  </div>
-  <img src="practice again button.png"id ="practiceagainbtn" />
-</div> 
-<div class="screen" id="responded">
-      <img src="cresponse.png" id="responseTitle" />
-      <img src="respondedbub.png"id ="notsafeintrobubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== SCREEN: CHECK BREATHING (looking) ========== -->
+    <div class="skinscreen" id="checkbreathing">
+      <div class="screen-tag skin-tag">Check for Breathing</div>
+      <img src="faceonly.png" class="face" />
+    </div>
 
-  <div class="response-buttons">
-    <img src="nextvertical.png" id="nextprBtn" />
-  </div>
-</div>
-<div class="skinscreen" id="checkbreathing">
-      <img src="checkbtitle.png" id="breathTitle" />
-      <img src="faceonly.png"class="face" />
-</div>
-<div class="screen" id="checkbreathingq">
-      <img src="checkbtitle.png" id="breathTitle" />
-      <img src="checkbq.png"class="introbubble" />
+    <!-- ========== SCREEN: CHECK BREATHING QUESTION ========== -->
+    <div class="screen" id="checkbreathingq">
+      <div class="screen-tag">Check for Breathing</div>
+      <div class="speech-bubble">
+        Could you see Spongy breathing?
+      </div>
+      <div class="response-buttons">
+        <button class="btn-yes" id="byesBtn">✓ Yes</button>
+        <button class="btn-no" id="bnoBtn">✗ No</button>
+      </div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="yesbutton.png" id="byesBtn" />
-    <img src="nobutton.png" id="bnoBtn" />
-  </div>
-</div> 
+    <!-- ========== SCREEN: BREATHING TYPE QUESTION ========== -->
     <div class="screen" id="checkbreathingtypeq">
-      <img src="checkbtitle.png" id="breathTitle" />
-      <img src="btypeqbub.png"class="introbubble" />
+      <div class="screen-tag">Check for Breathing</div>
+      <div class="speech-bubble">
+        Was the breathing normal or abnormal (gasping/gurgling)?
+      </div>
+      <div class="response-buttons">
+        <button class="btn-yes" id="normalBtn">✓ Normal</button>
+        <button class="btn-no" id="abnormalBtn">⚠ Abnormal</button>
+      </div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="normalbtn.png" id="normalBtn" />
-    <img src="abnormalbtn.png" id="abnormalBtn" />
-  </div>
-</div> 
-    </div> 
+    <!-- ========== SCREEN: NORMAL BREATHING ========== -->
     <div class="screen" id="normalbreathing">
-      <img src="checkbtitle.png" id="breathTitle" />
-      <img src="normalbreath.png"id="nbbub" />
-
-  <div class="response-buttons">
-    <img src="nextvertical.png" id="nextvBtn" />
-  </div>
-</div> 
-
-<div class="screen" id="promisebraja">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="NBrajapromisebub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
-
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promisebrajapress">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="NBrajapromisebub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
-
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="bpromisepress" />
-  </div>
-</div>      
-<div class="screen" id="promisesealedraja">
-      <img src="promisesealedrajatitleeng.png" id="promiseTitle" />
-      <img src="hero.png" id="girl" />
-
-  <div class="response-buttons">
-    <img src="promiseseaoedhands.png"id ="dpromiseseal" />
-  </div>
-  <img src="practice again button.png"id ="practiceagainbtn" />
-</div> 
-  
-<div class="screen" id="promisebrani">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="NBranipromisebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
-
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promisebranipress">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="NBranipromisebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
-
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="branipromisepress" />
-  </div>
-</div>       
-<div class="screen" id="promisesealedrani">
-      <img src="promisesealedranititleeng.png" id="promiseTitle" />
-      <img src="hero.png" id="girl" />
-
-  <div class="response-buttons">
-    <img src="promiseseaoedhands.png"id ="dpromiseseal" />
-  </div>
-  <img src="practice again button.png"id ="practiceagainbtn" />
-</div>
-<div class="screen" id="requestaed">
-      <img src="requestaedtitle (1).png" id="requestaedTitle" />
-      <img src="Group 146 (1).png"id ="requestaedimgbubble" />
-      
-  <div class="response-buttons">
-    <img src="nextvertical.png" id="nextaBtn" />
-  </div>
-</div>
-<div class="screen" id="dial112blank">
-      <img src="call 995 title.png" id="call112title" />
-</div>
- <div class="screen" id="dial112">
-    <img src="call 995 title.png" id="call112title" />
-
-    <div class="ambulance-card">
-        <div class="ambulance-label"> </div>
-        <div class="ambulance-number empty" id="dialDisplay">Dial a number</div>
+      <div class="screen-tag">Check for Breathing</div>
+      <div class="speech-bubble">
+        Spongy is breathing normally. Place them in the recovery position and keep monitoring them.
+      </div>
+      <button class="btn-next" id="nextvBtn">Next ›</button>
     </div>
 
-    <div class="keypad">
-    <button class="key" id="dialBtn1">1</button> 
-    <button class="key" id="dialBtn2">2<span class="key-label">ABC</span></button>
-    <button class="key" id="dialBtn3">3<span class="key-label">DEF</span></button>
-    
-    <button class="key" id="dialBtn4">4<span class="key-label">GHI</span></button>
-    <button class="key" id="dialBtn5">5<span class="key-label">JKL</span></button>
-    <button class="key" id="dialBtn6">6<span class="key-label">MNO</span></button>
-    
-    <button class="key" id="dialBtn7">7<span class="key-label">PQRS</span></button>
-    <button class="key" id="dialBtn8">8<span class="key-label">TUV</span></button>
-    <button class="key" id="dialBtn9">9<span class="key-label">WXYZ</span></button>
-    
-    <button class="key" id="dialBtnStar">*</button>
-    <button class="key" id="dialBtn0">0</button>
-    <button class="key" id="dialBtnHash">#</button>
-</div>
-
-<div class="button-row">
-    <button class="delete-button" id="deleteBtnDial">⌫</button> 
-    <button class="call-button" id="callBtn" disabled> <img src="image.png" class="call-icon" /></button>
+    <!-- ========== PROMISE SCREENS: BREATHING - RAJA ========== -->
+    <div class="screen" id="promisebraja">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for breathing!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
     </div>
-</div>
-<div class="screen" id="addspeaker">
-      <img src="call 995 title.png" id="call112title" />
-      <img src="speakeraddbub995.png"id ="speakeraddbubble" />
-   <div class="button-row">
-         <img src="disconnectbtn.png"id="disconnectBtn"  />
-      <img src="speakerbtn.png"id="speakerbtn"/>
+
+    <div class="screen" id="promisebrajapress">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for breathing!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="bpromisepress">🤝 I Promise!</button>
     </div>
-</div>
-<div class="screen" id="addedspeaker">
-      <img src="call 995 title.png" id="call112title" />
-      <img src="speakeraddbub995.png"id ="speakeraddbubble" />
-   <div class="button-row">
-         <img src="disconnectbtn.png"id="disconnectBtn"  />
-      <img src="speakeronbtn.png"id="speakeronbtn"/>
+
+    <!-- ========== PROMISE SCREENS: BREATHING - RANI ========== -->
+    <div class="screen" id="promisebrani">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for breathing!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
     </div>
-</div>
-<div class="screen" id="victiminca">
-      <img src="call 995 title.png" id="call112title" />
-      <img src="victiminca995.png"id ="speakeraddbubble" />
-   <div class="button-row">
-         <img src="disconnectbtn.png"id="disconnectBtn"  />
-      <img src="speakeronbtn.png"id="speakeronbtn"/>
+
+    <div class="screen" id="promisebranipress">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Promise me you will always check for breathing!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="branipromisepress">🤝 I Promise!</button>
     </div>
-</div>
-<div class="screen" id="cpr1">
-      <img src="begincprby.png" id="call112title" />
-     <img src="CPR1.gif"id ="cprbubble" />
-   <div class="response-buttons">
-    <img src="nextvertical.png" id="nextc1" />
-  </div>
-</div>
-<div class="screen" id="cpr2">
-      <img src="begincprby.png" id="call112title" />
-     <img src="interlock (4).png"id ="cprbubble" />
-   <div class="response-buttons">
-    <img src="nextvertical.png" id="nextc2" />
-  </div>
-</div>
-<div class="screen" id="cpr3">
-      <img src="begincprby.png" id="call112title" />
-     <img src="straight elbows (4).png"id ="cprbubble" />
-   <div class="response-buttons">
-    <img src="nextvertical.png" id="nextc3" />
-  </div>
-</div>
-<div class="screen" id="cpr4">
-      <img src="begincprby.png" id="call112title" />
-     <img src="cpr4.gif"id ="cprbubble" />
-   <div class="response-buttons">
-    <img src="nextvertical.png" id="nextc4" />
-  </div>
-</div>
-<div class="screen" id="cpr5">
-     <img src="Start cpr (2).png"id ="startcpr" /> 
-</div>
- <div class="screen" id="p5Screen">   
-</div>
-<div class="skinscreen" id="win">
-      <img src="awake.gif"class="face" />
-  <div class="next-button">
-    <img src="next.png" id="nextwinBtn" />
-  </div>
-      
-</div>
 
-<div class="screen" id="promisewraja">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="winpromiserajabub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== SCREEN: REQUEST AED ========== -->
+    <div class="screen" id="requestaed">
+      <div class="screen-tag">Get Help &amp; AED</div>
+      <div class="speech-bubble">
+        Shout loudly: "Someone call 995! Someone get the AED!"
+        Point to a specific person so they act quickly.
+      </div>
+      <img src="Group 146 (1).png" class="request-aed-img" />
+      <button class="btn-next" id="nextaBtn">Next ›</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promisewrajapress">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="winpromiserajabub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== SCREEN: DIAL 112 (blank loading) ========== -->
+    <div class="screen" id="dial112blank">
+      <div class="screen-tag">Call 995</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="wpromisepress" />
-  </div>
-</div>      
+    <!-- ========== SCREEN: DIAL PAD ========== -->
+    <div class="screen" id="dial112">
+      <div class="screen-tag">Call 995</div>
 
-  
-<div class="screen" id="promisewrani">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="winpromiseranibub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+      <div class="ambulance-card">
+        <div class="ambulance-label">Emergency Number</div>
+        <div class="ambulance-number empty" id="dialDisplay">995</div>
+      </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promisewranipress">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="winpromiseranibub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+      <div class="keypad">
+        <button class="key" id="dialBtn1">1</button>
+        <button class="key" id="dialBtn2">2<span class="key-label">ABC</span></button>
+        <button class="key" id="dialBtn3">3<span class="key-label">DEF</span></button>
+        <button class="key" id="dialBtn4">4<span class="key-label">GHI</span></button>
+        <button class="key" id="dialBtn5">5<span class="key-label">JKL</span></button>
+        <button class="key" id="dialBtn6">6<span class="key-label">MNO</span></button>
+        <button class="key" id="dialBtn7">7<span class="key-label">PQRS</span></button>
+        <button class="key" id="dialBtn8">8<span class="key-label">TUV</span></button>
+        <button class="key" id="dialBtn9">9<span class="key-label">WXYZ</span></button>
+        <button class="key" id="dialBtnStar">*</button>
+        <button class="key" id="dialBtn0">0</button>
+        <button class="key" id="dialBtnHash">#</button>
+      </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="wranipromisepress" />
-  </div>
-</div>       
-<div class="screen" id="promisesealedrani">
-      <img src="promisesealedranititleeng.png" id="promiseTitle" />
-      <img src="hero.png" id="girl" />
+      <div class="button-row">
+        <button class="delete-button" id="deleteBtnDial">⌫</button>
+        <button class="call-button" id="callBtn" disabled>
+          <img src="image.png" class="call-icon" />
+        </button>
+      </div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promiseseaoedhands.png"id ="dpromiseseal" />
-  </div>
-  <img src="practice again button.png"id ="practiceagainbtn" />
-</div>
+    <!-- ========== SCREEN: ADD SPEAKER ========== -->
+    <div class="screen" id="addspeaker">
+      <div class="screen-tag">Call 995</div>
+      <div class="speech-bubble">
+        Put the call on speaker so the operator can guide you!
+      </div>
+      <div class="button-row">
+        <img src="disconnectbtn.png" id="disconnectBtn" class="call-ctrl-btn" />
+        <img src="speakerbtn.png" id="speakerbtn" class="call-ctrl-btn" />
+      </div>
+    </div>
 
+    <!-- ========== SCREEN: SPEAKER ADDED ========== -->
+    <div class="screen" id="addedspeaker">
+      <div class="screen-tag">Call 995</div>
+      <div class="speech-bubble">
+        Speaker is on! The operator is guiding you.
+      </div>
+      <div class="button-row">
+        <img src="disconnectbtn.png" id="disconnectBtn2" class="call-ctrl-btn" />
+        <img src="speakeronbtn.png" id="speakeronbtn" class="call-ctrl-btn" />
+      </div>
+    </div>
 
-<div class="skinscreen" id="amb">
-      <img src="amb.gif"class="face" />
-  <div class="next-button">
-    <img src="next.png" id="nextambBtn" />
-  </div>
-      
-</div>
+    <!-- ========== SCREEN: VICTIM IN CARDIAC ARREST ========== -->
+    <div class="screen" id="victiminca">
+      <div class="screen-tag">Call 995</div>
+      <div class="speech-bubble">
+        Operator: "Spongy is in cardiac arrest. I'll guide you through CPR. Is Spongy on a flat, hard surface?"
+      </div>
+      <div class="button-row">
+        <img src="disconnectbtn.png" class="call-ctrl-btn" />
+        <img src="speakeronbtn.png" class="call-ctrl-btn" />
+      </div>
+    </div>
 
-<div class="screen" id="promiseambraja">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="winpromiserajabub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== CPR INSTRUCTION SCREENS ========== -->
+    <div class="screen" id="cpr1">
+      <div class="screen-tag">Begin CPR</div>
+      <img src="CPR1.gif" class="cpr-gif" />
+      <div class="cpr-instruction">
+        Place the heel of your hand on the centre of Spongy's chest.
+      </div>
+      <button class="btn-next" id="nextc1">Next ›</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiseambrajapress">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="winpromiserajabub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="cpr2">
+      <div class="screen-tag">Begin CPR</div>
+      <img src="interlock (4).png" class="cpr-gif" />
+      <div class="cpr-instruction">
+        Interlock your fingers — keep them raised off the chest.
+      </div>
+      <button class="btn-next" id="nextc2">Next ›</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="bpromisepress" />
-  </div>
-</div>      
+    <div class="screen" id="cpr3">
+      <div class="screen-tag">Begin CPR</div>
+      <img src="straight elbows (4).png" class="cpr-gif" />
+      <div class="cpr-instruction">
+        Keep your elbows straight and lean directly over Spongy.
+      </div>
+      <button class="btn-next" id="nextc3">Next ›</button>
+    </div>
 
-  
-<div class="screen" id="promiseambrani">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="winpromiseranibub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="cpr4">
+      <div class="screen-tag">Begin CPR</div>
+      <img src="cpr4.gif" class="cpr-gif" />
+      <div class="cpr-instruction">
+        Push down hard and fast — at least 5cm deep, 100–120 per minute.
+      </div>
+      <button class="btn-next" id="nextc4">Next ›</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiseambranipress">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="winpromiseranibub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== SCREEN: START CPR ========== -->
+    <div class="screen" id="cpr5">
+      <div class="cpr-start-card">
+        <div class="cpr-start-title">Ready?</div>
+        <div class="cpr-start-sub">Tap the screen in rhythm to do CPR!</div>
+        <button class="btn-start-cpr" id="startcpr">Start CPR ❤️</button>
+      </div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="branipromisepress" />
-  </div>
-</div>       
+    <!-- ========== P5 PLAY SCREEN ========== -->
+    <div class="screen" id="p5Screen"></div>
 
+    <!-- ========== SCREEN: WIN ========== -->
+    <div class="skinscreen" id="win">
+      <img src="awake.gif" class="face" />
+      <div class="outcome-label">🎉 You saved Spongy!</div>
+      <button class="btn-next btn-next--skin" id="nextwinBtn">Next ›</button>
+    </div>
 
+    <!-- ========== PROMISE SCREENS: WIN - RAJA ========== -->
+    <div class="screen" id="promisewraja">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You did it! Promise me you'll always be ready to help!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-<div class="skinscreen" id="aed">
-      <img src="aed.gif"class="face" />
-  <div class="next-button">
-    <img src="next.png" id="nextaedBtn" />
-  </div>
-      
-</div>
+    <div class="screen" id="promisewrajapress">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You did it! Promise me you'll always be ready to help!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="wpromisepress">🤝 I Promise!</button>
+    </div>
 
-<div class="screen" id="promiseaedraja">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="winpromiserajabub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: WIN - RANI ========== -->
+    <div class="screen" id="promisewrani">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You did it! Promise me you'll always be ready to help!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiseaedrajapress">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="winpromiserajabub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="promisewranipress">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You did it! Promise me you'll always be ready to help!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="wranipromisepress">🤝 I Promise!</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="bpromisepress" />
-  </div>
-</div>      
+    <!-- ========== SCREEN: AMB (ambulance outcome) ========== -->
+    <div class="skinscreen" id="amb">
+      <img src="amb.gif" class="face" />
+      <div class="outcome-label">🚑 Ambulance is on the way!</div>
+      <button class="btn-next btn-next--skin" id="nextambBtn">Next ›</button>
+    </div>
 
-  
-<div class="screen" id="promiseaedrani">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="winpromiseranibub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: AMB - RAJA ========== -->
+    <div class="screen" id="promiseambraja">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Great effort! Promise me you'll keep practising CPR!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiseaedranipress">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="winpromiseranibub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="promiseambrajapress">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Great effort! Promise me you'll keep practising CPR!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiseambrajapress">🤝 I Promise!</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="branipromisepress" />
-  </div>
-</div>       
+    <!-- ========== PROMISE SCREENS: AMB - RANI ========== -->
+    <div class="screen" id="promiseambrani">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Great effort! Promise me you'll keep practising CPR!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
+    <div class="screen" id="promiseambranipress">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Great effort! Promise me you'll keep practising CPR!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiseambranipress">🤝 I Promise!</button>
+    </div>
 
-<div class="blueskinscreen" id="latefast">
-      <img src="end (3).png"class="face" />
-  <div class="next-button">
-    <img src="next.png" id="nextlatefastBtn" />
-  </div>
-      
-</div>
+    <!-- ========== SCREEN: AED ========== -->
+    <div class="skinscreen" id="aed">
+      <img src="aed.gif" class="face" />
+      <div class="outcome-label">⚡ AED is ready!</div>
+      <button class="btn-next btn-next--skin" id="nextaedBtn">Next ›</button>
+    </div>
 
+    <!-- ========== PROMISE SCREENS: AED - RAJA ========== -->
+    <div class="screen" id="promiseaedraja">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Well done! Promise me you'll always ask for the AED!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-<div class="screen" id="promiselatefastraja">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="latefastpromisebub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="promiseaedrajapress">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Well done! Promise me you'll always ask for the AED!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiseaedrajapress">🤝 I Promise!</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiselatefastrajapress">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="latefastpromisebub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: AED - RANI ========== -->
+    <div class="screen" id="promiseaedrani">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Well done! Promise me you'll always ask for the AED!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="bpromisepress" />
-  </div>
-</div>      
+    <div class="screen" id="promiseaedranipress">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        Well done! Promise me you'll always ask for the AED!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiseaedranipress">🤝 I Promise!</button>
+    </div>
 
-  
-<div class="screen" id="promiselatefastrani">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="latefastpromisebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== SCREEN: LATE FAST ========== -->
+    <div class="blueskinscreen" id="latefast">
+      <img src="end (3).png" class="face" />
+      <div class="outcome-label late">Too fast! Aim for 100–120 per minute.</div>
+      <button class="btn-next btn-next--blue" id="nextlatefastBtn">Next ›</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiselatefastranipress">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="latefastpromisebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: LATE FAST - RAJA ========== -->
+    <div class="screen" id="promiselatefastraja">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You pressed too fast! Promise me you'll slow down to the right rhythm!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="branipromisepress" />
-  </div>
-</div>    
+    <div class="screen" id="promiselatefastrajapress">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You pressed too fast! Promise me you'll slow down to the right rhythm!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiselatefastrajapress">🤝 I Promise!</button>
+    </div>
 
-<div class="blueskinscreen" id="lateslow">
-      <img src="end (3).png"class="face" />
-  <div class="next-button">
-    <img src="next.png" id="nextlateslowBtn" />
-  </div>
-      
-</div>
+    <!-- ========== PROMISE SCREENS: LATE FAST - RANI ========== -->
+    <div class="screen" id="promiselatefastrani">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You pressed too fast! Promise me you'll slow down to the right rhythm!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
+    <div class="screen" id="promiselatefastranipress">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You pressed too fast! Promise me you'll slow down to the right rhythm!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiselatefastranipress">🤝 I Promise!</button>
+    </div>
 
-<div class="screen" id="promiselateslowraja">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="lateslowpromisebub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== SCREEN: LATE SLOW ========== -->
+    <div class="blueskinscreen" id="lateslow">
+      <img src="end (3).png" class="face" />
+      <div class="outcome-label late">Too slow! Aim for 100–120 per minute.</div>
+      <button class="btn-next btn-next--blue" id="nextlateslowBtn">Next ›</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiselateslowrajapress">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="lateslowpromisebub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: LATE SLOW - RAJA ========== -->
+    <div class="screen" id="promiselateslowraja">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You pressed too slowly! Promise me you'll keep a faster, steady rhythm!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="bpromisepress" />
-  </div>
-</div>      
+    <div class="screen" id="promiselateslowrajapress">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You pressed too slowly! Promise me you'll keep a faster, steady rhythm!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiselateslowrajapress">🤝 I Promise!</button>
+    </div>
 
-  
-<div class="screen" id="promiselateslowrani">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="lateslowpromisebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: LATE SLOW - RANI ========== -->
+    <div class="screen" id="promiselateslowrani">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You pressed too slowly! Promise me you'll keep a faster, steady rhythm!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiselateslowranipress">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="lateslowpromisebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="promiselateslowranipress">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You pressed too slowly! Promise me you'll keep a faster, steady rhythm!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiselateslowranipress">🤝 I Promise!</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="branipromisepress" />
-  </div>
-</div>    
- 
-<div class="blueskinscreen" id="lateinactive">
-      <img src="end (3).png"class="face" />
-  <div class="next-button">
-    <img src="next.png" id="nextlateinactiveBtn" />
-  </div>
-      
-</div>
+    <!-- ========== SCREEN: LATE INACTIVE ========== -->
+    <div class="blueskinscreen" id="lateinactive">
+      <img src="end (3).png" class="face" />
+      <div class="outcome-label late">You stopped pressing! Keep going — don't give up!</div>
+      <button class="btn-next btn-next--blue" id="nextlateinactiveBtn">Next ›</button>
+    </div>
 
+    <!-- ========== PROMISE SCREENS: LATE INACTIVE - RAJA ========== -->
+    <div class="screen" id="promiselateinactiveraja">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You stopped too early! Promise me you'll never give up during CPR!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-<div class="screen" id="promiselateinactiveraja">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="inactivepromisebub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <div class="screen" id="promiselateinactiverajapress">
+      <div class="screen-tag">Awesome, CPR Hero Raja!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You stopped too early! Promise me you'll never give up during CPR!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiselateinactiverajapress">🤝 I Promise!</button>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiselateinactiverajapress">
-      <img src="awscprraja.png" id="promiseTitle" />
-      <img src="inactivepromisebub.png"id ="dpromisesealrajabubble" />
-      <img src="hero.png" id="girl" />
+    <!-- ========== PROMISE SCREENS: LATE INACTIVE - RANI ========== -->
+    <div class="screen" id="promiselateinactiverani">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You stopped too early! Promise me you'll never give up during CPR!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <div class="promise-prompt">👆 Press to Promise</div>
+    </div>
 
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="bpromisepress" />
-  </div>
-</div>      
+    <div class="screen" id="promiselateinactiveranipress">
+      <div class="screen-tag">Awesome, CPR Hero Rani!</div>
+      <div class="speech-bubble speech-bubble--promise">
+        You stopped too early! Promise me you'll never give up during CPR!
+      </div>
+      <img src="hero.png" class="hero-char" />
+      <button class="btn-promise" id="promiselateinactiveranipress">🤝 I Promise!</button>
+    </div>
 
-  
-<div class="screen" id="promiselateinactiverani">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="inactivepromisebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
-
-  <div class="response-buttons">
-    <img src="promisepress.gif"id ="dpromiseinstruc" />
-  </div>
-</div>
-<div class="screen" id="promiselateinactiveranipress">
-      <img src="awscprrani.png" id="promiseTitle" />
-      <img src="inactivepromisebub.png"id ="dpromisesealranibubble" />
-      <img src="hero.png" id="girl" />
-
-  <div class="response-buttons">
-    <img src="promisepresshand.png"id ="branipromisepress" />
-  </div>
-</div>    
-    <main>
-    </main>
+    <main></main>
     <script src="sketch.js"></script>
   </body>
 </html>
