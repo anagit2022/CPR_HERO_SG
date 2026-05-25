@@ -191,6 +191,40 @@ left: 5vw; }
 display: flex; /* show first screen by default */ 
 }
 
+.compression-score-badge {
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+  width: 18vw;
+  max-width: 90px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #C0667A; /* default pinkish for low score */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 700;
+  font-size: 5vw;
+  line-height: 1;
+  text-align: center;
+  padding: 4px;
+}
+
+.compression-score-badge .score-denom {
+  font-size: 3vw;
+  font-weight: 600;
+}
+
+.compression-score-badge .score-label {
+  font-size: 2vw;
+  font-weight: 400;
+  margin-top: 2px;
+  line-height: 1.2;
+}
+
 /* ========================================
    DIALPAD SCREEN STYLES
    ======================================== */
