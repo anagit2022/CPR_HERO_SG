@@ -1430,20 +1430,29 @@ function handle_performance(){
 function reset(){
   play_start_time = millis();
   good_compression = 0;
-  compression_count =0;
+  compression_count = 0;
   progress = 0;
   angle = 0;
   bpm = 0;
   lastTouchTime = 0;
-  interval =0;
+  lastTouchElapsed = 0;
+  pressed_time = 0;
+  interval = 0;
   response_time = 0;
   breathe_time = 0;
   cprtime = 0;
   cprtpass = 0;
   call_time = 0;
+  fastcount = 0;
+  slowcount = 0;
+  diffGoal = 0;
+  play_elapsed = 0;
   breath_no = floor(random(11));
   dialedNumber = '';
-  //cpr2t = 0;
+  // Re-randomise target so each playthrough is fresh
+  maxTotalCompressions = floor(random(30, 50));
+  task_time = 600 * maxTotalCompressions + 3000;
+  currentState = "blank";
 }
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
