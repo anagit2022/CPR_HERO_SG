@@ -100,23 +100,44 @@ function setup() {
 //        pinkish (#C0667A) for score < 70  — matching the reference images.
 // =====================================================
 function showCompressionScore() {
-  // Use raw counts: good_compression out of maxTotalCompressions
-  // Color threshold: green if >= 70% of target achieved, pink otherwise
-  const pct = maxTotalCompressions > 0
-    ? good_compression / maxTotalCompressions
-    : 0;
-  const badgeColor = pct >= 0.7 ? "#1A6B5A" : "#C0667A";
-
-  // Update all 8 badge instances (latefast x4, lateslow x4)
-  for (let i = 1; i <= 8; i++) {
-    const suffix = i === 1 ? "" : String(i);
-    const badgeEl = document.getElementById("lateScoreBadge" + suffix);
-    const valueEl = document.getElementById("lateScoreValue" + suffix);
-    const denomEl = document.getElementById("lateScoreDenom" + suffix);
-    if (badgeEl) badgeEl.style.background = badgeColor;
-    if (valueEl) valueEl.textContent = good_compression;
-    if (denomEl) denomEl.textContent = "/" + maxTotalCompressions;
-  }
+    // 1. Calculate the difference from the goal 
+    // (Assuming maxTotalCompressions is your target and good_compression is what they got)
+    let diff = Math.abs(maxTotalCompressions - good_compression);
+    
+    // 2. Determine the color based on your rules
+    // If diff is between 0 and 10 (inclusive), it turns green. Otherwise, it turns red.
+    let circleColor = "";
+    if (diff <= 10) { 
+        circleColor = "#038660"; // Green
+    } else {
+        circleColor = "#FF5058"; // Red
+    }
+    
+    // 3. Update the text values and background colors for all potential badge targets
+    // We create an array of all the Badge IDs present in your HTML
+    const badgeIds = [
+        "lateScoreValue", "lateScoreValue2", "lateScoreValue3", "lateScoreValue4",
+        "lateScoreValue5", "lateScoreValue6", "lateScoreValue7", "lateScoreValue8"
+    ];
+    
+    badgeIds.forEach((id, index) => {
+        // Update the numbers inside the badges
+        let valueEl = document.getElementById(id);
+        let denomEl = document.getElementById(id.replace("Value", "Denom"));
+        
+        if (valueEl) valueEl.innerText = good_compression;
+        if (denomEl) denomEl.innerText = "/" + maxTotalCompressions;
+        
+        // Find the parent badge container (the circle element) and change its color
+        // Elements are named either "lateScoreBadge" or "lateScoreBadgeX"
+        let badgeContainerId = "lateScoreBadge" + (index === 0 ? "" : index + 1);
+        let badgeContainer = document.getElementById(badgeContainerId);
+        
+        if (badgeContainer) {
+            badgeContainer.style.backgroundColor = circleColor;
+            badgeContainer.style.borderRadius = "50%"; // Assures it renders as a circle if not handled in CSS
+        }
+    });
 }
 
 window.onload = () => {
