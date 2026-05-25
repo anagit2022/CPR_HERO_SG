@@ -1083,6 +1083,8 @@ function handle_performance() {
         // Inject live score into all latefast bubble text elements
         const fastMsg = `You were too fast! You got ${good_compression} / ${maxTotalCompressions} good compressions.`;
         document.querySelectorAll("#latefastText").forEach(el => el.textContent = fastMsg);
+        const fastScore = `${good_compression}/${maxTotalCompressions}`;
+        document.querySelectorAll("#latefastScoreRaja, #latefastScoreRani").forEach(el => el.textContent = fastScore);
       } else if (slowcount > fastcount) {
         currentState = "lateslow";
         p5Screen.style.display = "none";
@@ -1091,6 +1093,8 @@ function handle_performance() {
         // Inject live score into all lateslow bubble text elements
         const slowMsg = `You were too slow! You got ${good_compression} / ${maxTotalCompressions} good compressions.`;
         document.querySelectorAll("#lateslowText").forEach(el => el.textContent = slowMsg);
+        const slowScore = `${good_compression}/${maxTotalCompressions}`;
+        document.querySelectorAll("#lateslowScoreRaja, #lateslowScoreRani").forEach(el => el.textContent = slowScore);
       }
     }
   }
