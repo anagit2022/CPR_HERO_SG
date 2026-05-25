@@ -100,19 +100,22 @@ function setup() {
 //        pinkish (#C0667A) for score < 70  — matching the reference images.
 // =====================================================
 function showCompressionScore() {
-  const score = maxTotalCompressions > 0
-    ? Math.round((good_compression / maxTotalCompressions) * 100)
+  // Use raw counts: good_compression out of maxTotalCompressions
+  // Color threshold: green if >= 70% of target achieved, pink otherwise
+  const pct = maxTotalCompressions > 0
+    ? good_compression / maxTotalCompressions
     : 0;
-
-  const badgeColor = score >= 70 ? "#1A6B5A" : "#C0667A";
+  const badgeColor = pct >= 0.7 ? "#1A6B5A" : "#C0667A";
 
   // Update all 8 badge instances (latefast x4, lateslow x4)
   for (let i = 1; i <= 8; i++) {
     const suffix = i === 1 ? "" : String(i);
     const badgeEl = document.getElementById("lateScoreBadge" + suffix);
     const valueEl = document.getElementById("lateScoreValue" + suffix);
+    const denomEl = document.getElementById("lateScoreDenom" + suffix);
     if (badgeEl) badgeEl.style.background = badgeColor;
-    if (valueEl) valueEl.textContent = score;
+    if (valueEl) valueEl.textContent = good_compression;
+    if (denomEl) denomEl.textContent = "/" + maxTotalCompressions;
   }
 }
 
@@ -1194,6 +1197,19 @@ function draw() {
 
   if (!canvasActive) return;
 
+  // ── TIME-UP CHECK ──────────────────────────────────────────────
+  // Update play_elapsed every frame here (not only inside playScreen)
+  // so the game always ends on time even if a frame is slow or missed.
+  if (currentState === "play") {
+    play_elapsed = millis() - play_start_time;
+    diffGoal = maxTotalCompressions - good_compression;
+    if (play_elapsed >= task_time) {
+      handle_performance();
+      return; // state has changed; skip drawing this frame
+    }
+  }
+  // ──────────────────────────────────────────────────────────────
+
   background("#FFC5B7");
   textAlign(CENTER, CENTER);
   textSize(32);
@@ -1311,9 +1327,9 @@ function playScreen(){
   ellipse(width * 0.82,height * 0.5,42,120);
 
   // learning about time passed since play started
- play_elapsed = millis()- play_start_time 
+  // (play_elapsed is now updated in draw() every frame for reliability)
   // goodcompressions count
-  diffGoal = maxTotalCompressions - good_compression;
+  // diffGoal is now updated in draw() too
   console.log(diffGoal);
    // display time left 
   push();
@@ -1339,8 +1355,6 @@ function playScreen(){
   fill(0)
   text("Time left",0,0);
   pop();
-  // handle performance 
-  handle_performance();
   // handle inactivity
   lastTouchElapsed = ((millis()-pressed_time ));
   console.log(lastTouchElapsed);
