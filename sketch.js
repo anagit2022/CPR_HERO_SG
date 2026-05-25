@@ -92,6 +92,30 @@ function setup() {
   imageMode(CENTER);
 }
 
+// =====================================================
+// COMPRESSION SCORE BADGE HELPER
+// Calculates score from good_compression / maxTotalCompressions
+// and updates ALL 8 late-screen badge elements at once.
+// Color: dark green (#1A6B5A) for score >= 70, 
+//        pinkish (#C0667A) for score < 70  — matching the reference images.
+// =====================================================
+function showCompressionScore() {
+  const score = maxTotalCompressions > 0
+    ? Math.round((good_compression / maxTotalCompressions) * 100)
+    : 0;
+
+  const badgeColor = score >= 70 ? "#1A6B5A" : "#C0667A";
+
+  // Update all 8 badge instances (latefast x4, lateslow x4)
+  for (let i = 1; i <= 8; i++) {
+    const suffix = i === 1 ? "" : String(i);
+    const badgeEl = document.getElementById("lateScoreBadge" + suffix);
+    const valueEl = document.getElementById("lateScoreValue" + suffix);
+    if (badgeEl) badgeEl.style.background = badgeColor;
+    if (valueEl) valueEl.textContent = score;
+  }
+}
+
 window.onload = () => {
     // --- Screen Element Definitions (Kept as is) ---
     const begin1 = document.getElementById("begin1");
@@ -1050,10 +1074,14 @@ window.onload = () => {
     promiselateinactiverajapress.onclick = handleLateInactiveRajaPromisePress;
     promiselateinactiverajapress.addEventListener('touchstart', handleLateInactiveRajaPromisePress);
 
+    // =====================================================
     // Button: nextlatefastBtn (from latefast)
+    // UPDATED: calls showCompressionScore() before showing promise screen
+    // =====================================================
     const handleNextLateFast = () => {
+        showCompressionScore(); // ← populate all 4 latefast badge instances
         latefast.style.display = "none";
-       promisefltaud.play();
+        promisefltaud.play();
         if(genderState === 1){
             promiselatefastraja.style.display = "flex";
             setTimeout(() => {
@@ -1093,10 +1121,14 @@ window.onload = () => {
     promiselatefastrajapress.onclick = handleLateFastRajaPromisePress;
     promiselatefastrajapress.addEventListener('touchstart', handleLateFastRajaPromisePress);
 
+    // =====================================================
     // Button: nextlateslowBtn (from lateslow)
+    // UPDATED: calls showCompressionScore() before showing promise screen
+    // =====================================================
     const handleNextLateSlow = () => {
+        showCompressionScore(); // ← populate all 4 lateslow badge instances
         lateslow.style.display = "none";
-      promisesltaud.play();
+        promisesltaud.play();
         if(genderState === 1){
             promiselateslowraja.style.display = "flex";
             setTimeout(() => {
@@ -1114,7 +1146,6 @@ window.onload = () => {
     nextlateslowBtn.onclick = handleNextLateSlow;
     nextlateslowBtn.addEventListener('touchstart', handleNextLateSlow);
 
-  
     // Button: promiseslowfastrajapress
     const handleLateslowRajaPromisePress = () => {
       promisejingle.play();
@@ -1125,7 +1156,8 @@ window.onload = () => {
     };
     promiselateslowrajapress.onclick = handleLateslowRajaPromisePress;
     promiselateslowrajapress.addEventListener('touchstart', handleLateslowRajaPromisePress);
-// Button: promiselateslowranipress
+
+    // Button: promiselateslowranipress
     const handleLateslowRaniPromisePress = () => {
       promisejingle.play();
       test.play();
@@ -1135,8 +1167,6 @@ window.onload = () => {
     };
     promiselateslowranipress.onclick = handleLateslowRaniPromisePress;
     promiselateslowranipress.addEventListener('touchstart', handleLateslowRaniPromisePress);
-
-  
 
 }; // End of window.onload
 
