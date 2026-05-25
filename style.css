@@ -1,830 +1,373 @@
-/* ============================================
-   ROOT VARIABLES
-   ============================================ */
-:root {
-  --orange:      #F25C3B;
-  --skin:        #FFC5B7;
-  --blue:        #91C1FF;
-  --white:       #FFFFFF;
-  --text-dark:   #2C2C2C;
-  --text-light:  #FFFFFF;
-  --yes-green:   #6CC04A;
-  --no-red:      #FF4E4E;
-  --promise-gold:#FFD166;
-  --shadow:      rgba(0,0,0,0.15);
-
-  --font-display: 'Fredoka One', cursive;
-  --font-body:    'Nunito', sans-serif;
-}
-
-/* ============================================
-   RESET & BASE
-   ============================================ */
-*, *::before, *::after {
-  box-sizing: border-box;
+html, body {
   margin: 0;
   padding: 0;
-}
-
-html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  font-family: var(--font-body);
+  overflow: hidden;   /* ✨ disables all scrolling */
 }
 
-/* ============================================
-   SCREEN TYPES
-   ============================================ */
 .screen {
   width: 100vw;
   height: 100vh;
-  background: var(--orange);
-  display: none;               /* hidden by default */
+  background: #F25C3B;   /* your orange background */
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 4vw;
 }
+.skinscreen { 
+width: 100vw; 
+height: 100vh; 
+background: #FFC5B7; /* your orange background */ 
+display: none; 
+flex-direction: column; 
+align-items: center; 
+justify-content: center; 
+position: relative; }
+.blueskinscreen { 
+width: 100vw; 
+height: 100vh; 
+background: #91C1FF; /* your orange background */ 
+display: none; 
+flex-direction: column; 
+align-items: center; 
+justify-content: center; 
+position: relative; }
 
-.skinscreen {
-  width: 100vw;
-  height: 100vh;
-  background: var(--skin);
-  display: none;
+
+#gender  {
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 4vw;
+  gap: 20px; /* space between image and buttons */
 }
 
-.blueskinscreen {
-  width: 100vw;
-  height: 100vh;
-  background: var(--blue);
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 4vw;
-}
-
-/* First screen visible on load */
-#begin1 { display: flex; }
-
-/* ============================================
-   SCREEN TAG (replaces title bar images)
-   ============================================ */
-.screen-tag {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,0.18);
-  color: var(--white);
-  font-family: var(--font-display);
-  font-size: clamp(16px, 5vw, 22px);
-  padding: 3vw 5vw;
-  letter-spacing: 0.03em;
-  text-align: left;
-}
-
-/* Tag variant for skin-colored screens */
-.skin-tag {
-  background: rgba(0,0,0,0.10);
-  color: var(--text-dark);
-}
-
-/* ============================================
-   SPEECH BUBBLE (replaces bubble images)
-   ============================================ */
-.speech-bubble {
-  background: var(--white);
-  border-radius: 24px;
-  padding: 5vw 6vw;
-  width: 82vw;
-  max-width: 380px;
-  font-family: var(--font-body);
-  font-size: clamp(15px, 4.5vw, 19px);
-  font-weight: 700;
-  color: var(--text-dark);
-  line-height: 1.5;
-  box-shadow: 0 6px 20px var(--shadow);
-  position: relative;
-  margin-top: 14vw;   /* space below the tag bar */
-  text-align: center;
-}
-
-/* Little tail pointing down */
-.speech-bubble::after {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 10px solid transparent;
-  border-top-color: var(--white);
-}
-
-/* Promise-variant bubble (positioned higher for hero image) */
-.speech-bubble--promise {
-  margin-top: 14vw;
-  margin-bottom: 2vw;
-}
-
-/* ============================================
-   SCREEN TITLE (large centered heading)
-   ============================================ */
-.screen-title {
-  font-family: var(--font-display);
-  font-size: clamp(26px, 8vw, 38px);
-  color: var(--white);
-  text-align: center;
-  margin-bottom: 6vw;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-/* ============================================
-   HERO CHARACTER
-   ============================================ */
-.hero-char {
-  position: absolute;
-  top: 5vh;
-  right: 4vw;
-  width: clamp(60px, 20vw, 100px);
-  height: auto;
-}
-
-/* ============================================
-   FACE IMAGE (for skin screens)
-   ============================================ */
-.face {
+.dangerbubble img {
   width: 80vw;
-  max-width: 340px;
+  max-width: 380px;
   height: auto;
-  border-radius: 20px;
+  margin-top: 10vh;
+}
+#nbbub,#notsafeintrobubble{
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+  max-width: 380px;
+  margin-bottom: -20vh;
+  height: auto;
+ 
+}
+#dpromisesealrajabubble,#dpromisesealranibubble{
+  display: flex;
+  width: 80vw;
+  left: 5vw;
+  max-width: 380px;
+  margin-bottom: -5vh;
+  
+ 
+}
+#requestaedimgbubble{
+display: flex;
+  justify-content: center;
+  width: 80vw;
+  max-width: 380px;
+  margin-bottom: -40vh;
+  height: auto;
+}
+#cprbubble,#startcpr{
+display: flex;
+  justify-content: center;
+  width: 90vw;
+  max-width: 380px;
+  margin-bottom: -25vh;
+  height: auto;
 }
 
-/* ============================================
-   BUTTONS — PRIMARY (begin / start)
-   ============================================ */
-.btn-primary {
-  background: var(--white);
-  color: var(--orange);
-  border: none;
-  border-radius: 50px;
-  padding: clamp(14px, 4vw, 18px) clamp(40px, 12vw, 70px);
-  font-family: var(--font-display);
-  font-size: clamp(20px, 6vw, 28px);
-  cursor: pointer;
-  box-shadow: 0 6px 0 rgba(0,0,0,0.18);
-  transition: transform 0.1s, box-shadow 0.1s;
-  margin-top: 6vw;
-}
-
-.btn-primary:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0 rgba(0,0,0,0.18);
-}
-
-/* ============================================
-   BUTTONS — GENDER
-   ============================================ */
-.gender-buttons {
+.danger-buttons,.gender-buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 5vw;
-  margin-top: 4vw;
+  gap: 20px;          /* space between yes and no buttons */
+  width: 100%;
+  margin-top: 10vh;   /* THIS moves buttons DOWN from bubble */
+  margin-bottom: 2vh; /* THIS controls distance from bottom of screen */
 }
-
-.btn-gender {
-  background: var(--white);
-  color: var(--orange);
-  border: none;
-  border-radius: 20px;
-  padding: clamp(16px, 5vw, 22px) clamp(24px, 8vw, 40px);
-  font-family: var(--font-display);
-  font-size: clamp(18px, 5.5vw, 26px);
-  cursor: pointer;
-  box-shadow: 0 6px 0 rgba(0,0,0,0.18);
-  transition: transform 0.1s, box-shadow 0.1s;
-}
-
-.btn-gender:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0 rgba(0,0,0,0.18);
-}
-
-/* ============================================
-   BUTTONS — YES / NO
-   ============================================ */
-.danger-buttons,
 .response-buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 5vw;
+  gap: 24px;          /* space between yes and no buttons */
   width: 100%;
-  margin-top: 8vw;
+  margin-top:40vh;   /* THIS moves buttons DOWN from bubble */
+  margin-bottom: -8vh; /* THIS controls distance from bottom of screen */
 }
-
-.btn-yes,
-.btn-no {
-  border: none;
-  border-radius: 50px;
-  padding: clamp(14px, 4vw, 18px) clamp(30px, 9vw, 50px);
-  font-family: var(--font-display);
-  font-size: clamp(18px, 5.5vw, 24px);
-  cursor: pointer;
-  color: var(--white);
-  transition: transform 0.1s, box-shadow 0.1s;
-}
-
-.btn-yes {
-  background: var(--yes-green);
-  box-shadow: 0 6px 0 #4a9932;
-}
-
-.btn-no {
-  background: var(--no-red);
-  box-shadow: 0 6px 0 #cc3030;
-}
-
-.btn-yes:active,
-.btn-no:active {
-  transform: translateY(4px);
-  box-shadow: none;
-}
-
-/* ============================================
-   BUTTON — NEXT
-   ============================================ */
-.btn-next {
+#nextBtn,#nextwinBtn,#nextaedBtn,#nextambBtn,#nextlatefastBtn,#nextlateslowBtn,#nextlateinactiveBtn {
   position: absolute;
-  bottom: 8vh;
-  right: 6vw;
-  background: var(--white);
-  color: var(--orange);
-  border: none;
-  border-radius: 50px;
-  padding: clamp(12px, 3.5vw, 16px) clamp(22px, 7vw, 36px);
-  font-family: var(--font-display);
-  font-size: clamp(16px, 5vw, 22px);
+  top: 5vh;       /* distance from top */
+  right: 5vw;     /* distance from right */
+  width: 20vw   /* responsive size */
   cursor: pointer;
-  box-shadow: 0 5px 0 rgba(0,0,0,0.15);
-  transition: transform 0.1s, box-shadow 0.1s;
 }
-
-.btn-next:active {
-  transform: translateY(4px);
-  box-shadow: none;
-}
-
-/* Next button variants for non-orange screens */
-.btn-next--skin {
-  color: var(--orange);
-  background: var(--white);
-}
-
-.btn-next--blue {
-  color: var(--blue);
-  background: var(--white);
-}
-
-/* ============================================
-   PROMISE SCREENS
-   ============================================ */
-.promise-prompt {
-  font-family: var(--font-display);
-  font-size: clamp(16px, 5vw, 22px);
-  color: var(--white);
-  margin-top: 4vw;
-  animation: pulse 1.2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.6; transform: scale(0.95); }
-}
-
-.btn-promise {
+#nextvBtn {
   position: absolute;
-  bottom: 8vh;
-  right: 6vw;
-  background: var(--promise-gold);
-  color: var(--text-dark);
-  border: none;
-  border-radius: 50px;
-  padding: clamp(12px, 3.5vw, 16px) clamp(20px, 6vw, 32px);
-  font-family: var(--font-display);
-  font-size: clamp(16px, 5vw, 22px);
+  bottom: 8vh;       /* distance from top */
+  right: 10vw;     /* distance from right */
+  width: 20vw   /* responsive size */
   cursor: pointer;
-  box-shadow: 0 5px 0 #e0a800;
-  transition: transform 0.1s, box-shadow 0.1s;
 }
-
-.btn-promise:active {
-  transform: translateY(4px);
-  box-shadow: none;
-}
-
-.promise-sealed-badge {
-  font-size: clamp(60px, 18vw, 100px);
-  margin-top: 4vw;
-  animation: pop 0.4s ease-out;
-}
-
-@keyframes pop {
-  0%   { transform: scale(0); }
-  70%  { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-.btn-again {
+#nextpBtn {
   position: absolute;
-  bottom: 8vh;
-  background: var(--white);
-  color: var(--orange);
-  border: none;
-  border-radius: 50px;
-  padding: clamp(12px, 3.5vw, 16px) clamp(22px, 7vw, 36px);
-  font-family: var(--font-display);
-  font-size: clamp(16px, 5vw, 20px);
+  bottom: 20vh;       /* distance from top */
+  right: 10vw;     /* distance from right */
+  width: 20vw   /* responsive size */
   cursor: pointer;
-  box-shadow: 0 5px 0 rgba(0,0,0,0.15);
-  transition: transform 0.1s, box-shadow 0.1s;
 }
-
-.btn-again:active {
-  transform: translateY(4px);
-  box-shadow: none;
-}
-
-/* ============================================
-   CPR SCREENS
-   ============================================ */
-.cpr-gif {
-  width: 82vw;
-  max-width: 360px;
-  height: auto;
-  border-radius: 20px;
-  margin-top: 14vw;
-  box-shadow: 0 4px 16px var(--shadow);
-}
-
-.cpr-instruction {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 4vw 5vw;
-  width: 82vw;
-  max-width: 360px;
-  font-family: var(--font-body);
-  font-size: clamp(14px, 4vw, 17px);
-  font-weight: 700;
-  color: var(--text-dark);
-  text-align: center;
-  margin-top: 4vw;
-  box-shadow: 0 4px 12px var(--shadow);
-}
-
-/* ============================================
-   CPR START CARD
-   ============================================ */
-.cpr-start-card {
-  background: var(--white);
-  border-radius: 28px;
-  padding: 8vw 8vw;
-  width: 82vw;
-  max-width: 360px;
-  text-align: center;
-  box-shadow: 0 8px 30px var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4vw;
-}
-
-.cpr-start-title {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 10vw, 50px);
-  color: var(--orange);
-}
-
-.cpr-start-sub {
-  font-family: var(--font-body);
-  font-size: clamp(14px, 4.5vw, 18px);
-  font-weight: 700;
-  color: var(--text-dark);
-  line-height: 1.5;
-}
-
-.btn-start-cpr {
-  background: var(--orange);
-  color: var(--white);
-  border: none;
-  border-radius: 50px;
-  padding: clamp(14px, 4vw, 18px) clamp(30px, 10vw, 50px);
-  font-family: var(--font-display);
-  font-size: clamp(20px, 6vw, 28px);
+#nextprBtn,#nextaBtn,#nextc1,#nextc2,#nextc3,#nextc4{
+  position: absolute;
+  bottom: 14vh;       /* distance from top */
+  right: 10vw;     /* distance from right */
+  width: 20vw   /* responsive size */
   cursor: pointer;
-  box-shadow: 0 6px 0 #c0412a;
-  transition: transform 0.1s, box-shadow 0.1s;
 }
-
-.btn-start-cpr:active {
-  transform: translateY(4px);
-  box-shadow: none;
-}
-
-/* ============================================
-   OUTCOME LABEL (win / amb / aed / late)
-   ============================================ */
-.outcome-label {
-  font-family: var(--font-display);
-  font-size: clamp(18px, 5.5vw, 26px);
-  color: var(--text-dark);
-  text-align: center;
-  margin-top: 5vw;
-  padding: 3vw 5vw;
-  background: rgba(255,255,255,0.6);
-  border-radius: 16px;
-  max-width: 80vw;
-}
-
-.outcome-label.late {
-  color: #c0322a;
-  background: rgba(255,255,255,0.75);
-}
-
-/* ============================================
-   REQUEST AED IMAGE
-   ============================================ */
-.request-aed-img {
-  width: 70vw;
-  max-width: 300px;
-  height: auto;
-  margin-top: 4vw;
-}
-
-/* ============================================
-   INTRO BUBBLE (kept as image)
-   ============================================ */
-.introbubble {
-  width: 82vw;
-  max-width: 380px;
-  height: auto;
+#dpromiseinstruc,#dpromisepress,#dpromiseseal,#dranipromisepress,#rranipromisepress,#rrajapromisepress,#bpromisepress,#branipromisepress,#wranipromisepress,#wpromisepress {
+  position: absolute;
+  bottom: 5vh;       /* distance from top */
+  right: 10vw;     /* distance from right */
+  width: 20vw   /* responsive size */
+  justify-content: center;
   cursor: pointer;
+}
+#girl{
+  position: absolute;
+  top: 5vh;       /* distance from top */
+  right: 5vw;     /* distance from right */
+  width: 20vw   /* responsive size */
+}
+
+.checkd{
+  width: 90%;
+  max-width: 350px;
+  height: auto;
+
+  margin-bottom: 40px;
+  margin-top: -120px;   /* move upward */
 }
 
 .bubble {
-  width: 82vw;
-  max-width: 380px;
+  width: 100%;          /* responsive width */
+  max-width: 350px;    /* never grow too big */
   height: auto;
-  margin-bottom: 4vw;
+  margin-bottom: 40px; /* space above button */
 }
-
-/* ============================================
-   CALL SCREEN CONTROLS
-   ============================================ */
-.call-ctrl-btn {
-  width: 18vw;
-  max-width: 80px;
+.begin-btn {
+  width: 100%;
+  max-width: 250px;
   height: auto;
   cursor: pointer;
 }
+.startBtn {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  cursor: pointer;
+}
+#practiceagainbtn,#practiceagainbtnraja,#practiceagainbtnrani{
+  position: absolute;
+    bottom: 15vh;      /* Distance from bottom */
+    right: 22vw;      /* Distance from right */
+    width: 100%;      /* Button size */
+    max-width: 200px;
+    cursor: pointer;
+    z-index: 10; 
+}
 
-/* ============================================
-   DIAL PAD (unchanged from original)
-   ============================================ */
+.screen {
+  display: none;
+}
+#responseTitle,#dangerTitle,#breathTitle,#promiseTitle,#requestaedTitle,#call112title,#startcpr { 
+position: absolute; 
+top: 5vh; 
+left: 5vw; } 
+#begin1 { 
+display: flex; /* show first screen by default */ 
+}
+
+/* ========================================
+   DIALPAD SCREEN STYLES
+   ======================================== */
 #dial112 {
-  font-family: var(--font-body);
+    font-family: 'Albert Sans', Arial, sans-serif;
+}
+.dial-header {
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    color: white;
+}
+
+.dial-logo {
+    font-size: 56px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dial-header-text {
+    font-size: 18px;
+    line-height: 1.5;
 }
 
 .ambulance-card {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 5vw;
-  text-align: center;
-  min-height: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 70vw;
-  max-width: 300px;
-  position: absolute;
-  top: 18vh;
-  box-shadow: 0 4px 16px var(--shadow);
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70vw;
+    max-width: 300px;
+    position: absolute;
+    top: 18vh;
 }
 
 .ambulance-label {
-  font-size: clamp(12px, 3.5vw, 16px);
-  color: #888;
-  margin-bottom: 2vw;
-  font-weight: 600;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
 }
 
 .ambulance-number {
-  font-family: var(--font-display);
-  font-size: clamp(40px, 14vw, 64px);
-  color: var(--orange);
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    font-size: 64px;
+    font-weight: bold;
+    color: #FF6B4A;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .ambulance-number.empty {
-  color: #ddd;
-  font-size: clamp(18px, 5vw, 24px);
+    color: #ddd;
+    font-size: 24px;
 }
 
+/* Keypad Grid */
 .keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2vw;
-  position: absolute;
-  top: 42vh;
-  width: 85vw;
-  max-width: 350px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;      /* responsive spacing */
+    position: absolute;
+    top: 42vh;
+    width: 85vw;
+    max-width: 350px;
 }
 
+/* Key Buttons */
 .key {
-  background: var(--white);
-  border: none;
-  border-radius: 50%;
-  width: 14vw;
-  height: 14vw;
-  max-width: 90px;
-  max-height: 90px;
-  font-family: var(--font-display);
-  font-size: clamp(18px, 7vw, 32px);
-  color: var(--orange);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  margin: 0 auto;
-  box-shadow: 0 4px 10px var(--shadow);
-  transition: transform 0.1s;
-  border: none;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 14vw;         /* responsive size */
+    height: 14vw;        /* responsive size */
+    max-width: 90px;     /* optional safety limit */
+    max-height: 90px;
+    font-size: 8vw;      /* responsive font */
+    color: #FF6B4A;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    margin: 0 auto;
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.key:active {
-  transform: scale(0.92);
-}
-
+/* Label under number */
 .key-label {
-  font-family: var(--font-body);
-  font-size: clamp(7px, 2.5vw, 11px);
-  color: #aaa;
-  margin-top: -1vw;
+    font-size: 2.3vw;   /* responsive text */
+    margin-top: -1vw;
+    color: #999;
 }
 
+/* Call / Delete buttons row */
 .button-row {
-  display: flex;
-  justify-content: center;
-  gap: 3vw;
-  position: absolute;
-  bottom: 16vh;
+    display: flex;
+    justify-content: center;
+    gap: 3vw;       /* responsive spacing */
+    position: absolute;
+    bottom: 16vh;
+  margin-top: 10vh;
 }
+
 
 .delete-button {
-  background: var(--white);
-  border: none;
-  border-radius: 50%;
-  width: 14vw;
-  height: 14vw;
-  max-width: 90px;
-  max-height: 90px;
-  font-size: clamp(18px, 7vw, 30px);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 10px var(--shadow);
-  transition: transform 0.1s;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 14vw;             /* responsive */
+    height: 14vw;            /* responsive */
+    max-width: 90px;         /* optional cap */
+    max-height: 90px;
+    font-size: 7vw;          /* responsive */
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.delete-button:active { transform: scale(0.92); }
 
 .call-button {
-  background: #B6DB54;
-  border: none;
-  border-radius: 50%;
-  width: 14vw;
-  height: 14vw;
-  max-width: 90px;
-  max-height: 90px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 10px var(--shadow);
-  transition: transform 0.1s, background 0.2s;
+    background: #B6DB54;
+    border: none;
+    border-radius: 50%;
+    width: 14vw;             /* responsive */
+    height: 14vw;            /* responsive */
+    max-width: 90px;         /* optional safety limit */
+    max-height: 90px;
+    font-size: 7vw;          /* responsive */
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.call-button:active  { transform: scale(0.92); }
-.call-button:hover   { background: #a5ca43; }
+/* image inside button */
+.call-icon {
+    width: 80px;
+}
+
+/* hover + press animations */
+.call-button:hover {
+    background: #A5CA43;
+    transform: scale(1.05);
+}
+
+.call-button:active {
+    transform: scale(0.95);
+}
+
+/* disabled state */
 .call-button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-  opacity: 0.5;
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.5;
 }
-
-.call-icon { width: clamp(30px, 9vw, 60px); }
-
-/* ============================================
-   P5 CANVAS SCREEN
-   ============================================ */
 #p5Screen {
-  width: 100vw;
-  height: 100vh;
-  display: none;
-  position: relative;
-  background: var(--skin);
-}
-
-/* ============================================
-   START BUTTON (on intro screen)
-   ============================================ */
-.start-button {
-  margin-top: 6vw;
-}
-
-/* ============================================
-   GENDER SCREEN LAYOUT
-   ============================================ */
-#gender {
-  gap: 4vw;
-}
-
-/* ============================================================
-   BUBBLE WRAP — overlay real text on a bubble PNG shape
-   Only used on latefast and lateslow promise screens
-============================================================ */
-.bubble-wrap {
-  position: relative;
-  display: inline-block;
-}
-
-.bubble-bg {
-  display: block;
-  width: 80vw;
-  max-width: 380px;
-  height: auto;
-}
-
-.bubble-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  text-align: center;
-  font-family: 'Albert Sans', sans-serif;
-  font-size: clamp(13px, 3.8vw, 17px);
-  font-weight: 700;
-  color: #2C2C2C;
-  line-height: 1.4;
-  margin: 0;
-}
-
-/* ============================================================
-   PROMISE LAYOUT — matches screenshot (Awesome CPR Rani screen)
-   Used for latefast and lateslow promise screens
-============================================================ */
-.promise-layout {
-  flex-direction: column;
-  align-items: flex-start;    /* everything left-aligned like the screenshot */
-  justify-content: flex-start;
-  padding: 6vw 6vw 0 6vw;
-  overflow: hidden;           /* stops thumb from causing scroll */
-}
-
-/* top row: title left, character top-right */
-.promise-header {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 5vw;
-}
-
-/* "Awesome" on its own line, then the pill below */
-.promise-title-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2vw;
-}
-
-.promise-awesome {
-  font-family: 'Albert Sans', sans-serif;
-  font-size: clamp(26px, 8vw, 36px);
-  font-weight: 800;
-  color: #FFFFFF;
-  line-height: 1;
-}
-
-/* white rounded pill — "CPR Rani !" */
-.promise-name-pill {
-  background: #FFFFFF;
-  color: #F25C3B;             /* your orange */
-  font-family: 'Albert Sans', sans-serif;
-  font-size: clamp(20px, 6vw, 28px);
-  font-weight: 800;
-  border-radius: 10px;
-  padding: 1vw 3vw;
-  line-height: 1.2;
-}
-
-/* character image top-right */
-.promise-hero {
-  width: clamp(60px, 18vw, 90px);
-  height: auto;
-  flex-shrink: 0;
-}
-
-/* text block */
-.promise-body {
-  display: flex;
-  flex-direction: column;
-  gap: 4vw;
-  width: 100%;
-}
-
-/* first paragraph — bold italic, white */
-.promise-bold-text {
-  font-family: 'Albert Sans', sans-serif;
-  font-size: clamp(15px, 4.5vw, 19px);
-  font-weight: 800;
-  font-style: italic;
-  color: #FFFFFF;
-  line-height: 1.45;
-  margin: 0;
-}
-
-/* second paragraph — regular weight, white */
-.promise-regular-text {
-  font-family: 'Albert Sans', sans-serif;
-  font-size: clamp(14px, 4.2vw, 18px);
-  font-weight: 400;
-  color: #FFFFFF;
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* thumb image — large, positioned at bottom */
-.promise-thumb-wrap {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 4vw;
-}
-
-.promise-thumb {
-  width: clamp(180px, 70vw, 320px);
-  height: auto;
-  cursor: pointer;
-}
-
-/* ============================================================
-   SCORE CIRCLE — replaces hero.png on latefast/lateslow screens
-   White circle, score number inside, "Good compression" below
-============================================================ */
-.score-circle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #FFFFFF;
-  border-radius: 50%;
-  width: clamp(70px, 20vw, 90px);
-  height: clamp(70px, 20vw, 90px);
-  flex-shrink: 0;
-  padding: 6px;
-}
-
-.score-number {
-  font-family: 'Albert Sans', sans-serif;
-  font-size: clamp(16px, 5vw, 22px);
-  font-weight: 800;
-  color: #F25C3B;
-  line-height: 1;
-}
-
-.score-label {
-  font-family: 'Albert Sans', sans-serif;
-  font-size: clamp(7px, 2.2vw, 10px);
-  font-weight: 600;
-  color: #F25C3B;
-  text-align: center;
-  line-height: 1.2;
-  margin-top: 2px;
-}
+      width: 100vw;
+      height: 100vh;
+      display: none;     /* hidden initially */
+      position: relative;
+      background: #FFC5B7;
+    }
