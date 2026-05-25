@@ -693,3 +693,138 @@ html, body {
   line-height: 1.4;
   margin: 0;
 }
+
+/* ============================================================
+   PROMISE LAYOUT — matches screenshot (Awesome CPR Rani screen)
+   Used for latefast and lateslow promise screens
+============================================================ */
+.promise-layout {
+  flex-direction: column;
+  align-items: flex-start;    /* everything left-aligned like the screenshot */
+  justify-content: flex-start;
+  padding: 6vw 6vw 0 6vw;
+  overflow: hidden;           /* stops thumb from causing scroll */
+}
+
+/* top row: title left, character top-right */
+.promise-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5vw;
+}
+
+/* "Awesome" on its own line, then the pill below */
+.promise-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2vw;
+}
+
+.promise-awesome {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: clamp(26px, 8vw, 36px);
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+/* white rounded pill — "CPR Rani !" */
+.promise-name-pill {
+  background: #FFFFFF;
+  color: #F25C3B;             /* your orange */
+  font-family: 'Albert Sans', sans-serif;
+  font-size: clamp(20px, 6vw, 28px);
+  font-weight: 800;
+  border-radius: 10px;
+  padding: 1vw 3vw;
+  line-height: 1.2;
+}
+
+/* character image top-right */
+.promise-hero {
+  width: clamp(60px, 18vw, 90px);
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* text block */
+.promise-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4vw;
+  width: 100%;
+}
+
+/* first paragraph — bold italic, white */
+.promise-bold-text {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: clamp(15px, 4.5vw, 19px);
+  font-weight: 800;
+  font-style: italic;
+  color: #FFFFFF;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* second paragraph — regular weight, white */
+.promise-regular-text {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: clamp(14px, 4.2vw, 18px);
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* thumb image — large, positioned at bottom */
+.promise-thumb-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 4vw;
+}
+
+.promise-thumb {
+  width: clamp(180px, 70vw, 320px);
+  height: auto;
+  cursor: pointer;
+}
+
+/* ============================================================
+   SCORE CIRCLE — replaces hero.png on latefast/lateslow screens
+   White circle, score number inside, "Good compression" below
+============================================================ */
+.score-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: 50%;
+  width: clamp(70px, 20vw, 90px);
+  height: clamp(70px, 20vw, 90px);
+  flex-shrink: 0;
+  padding: 6px;
+}
+
+.score-number {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: clamp(16px, 5vw, 22px);
+  font-weight: 800;
+  color: #F25C3B;
+  line-height: 1;
+}
+
+.score-label {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: clamp(7px, 2.2vw, 10px);
+  font-weight: 600;
+  color: #F25C3B;
+  text-align: center;
+  line-height: 1.2;
+  margin-top: 2px;
+}
