@@ -100,46 +100,50 @@ function setup() {
 //        pinkish (#C0667A) for score < 70  — matching the reference images.
 // =====================================================
 function showCompressionScore() {
-    // 1. Calculate the difference from the goal 
-    // (Assuming maxTotalCompressions is your target and good_compression is what they got)
-    let diff = Math.abs(maxTotalCompressions - good_compression);
-    
-    // 2. Determine the color based on your rules
-    // If diff is between 0 and 10 (inclusive), it turns green. Otherwise, it turns red.
-    let circleColor = "";
-    if (diff <= 10) { 
-        circleColor = "#038660"; // Green
-    } else {
-        circleColor = "#FF5058"; // Red
-    }
-    
-    // 3. Update the text values and background colors for all potential badge targets
-    // We create an array of all the Badge IDs present in your HTML
-    const badgeIds = [
-        "lateScoreValue", "lateScoreValue2", "lateScoreValue3", "lateScoreValue4",
-        "lateScoreValue5", "lateScoreValue6", "lateScoreValue7", "lateScoreValue8"
-    ];
-    
-    badgeIds.forEach((id, index) => {
-        // Update the numbers inside the badges
-        let valueEl = document.getElementById(id);
-        let denomEl = document.getElementById(id.replace("Value", "Denom"));
-        
-        if (valueEl) valueEl.innerText = good_compression;
-        if (denomEl) denomEl.innerText = "/" + maxTotalCompressions;
-        
-        // Find the parent badge container (the circle element) and change its color
-        // Elements are named either "lateScoreBadge" or "lateScoreBadgeX"
-        let badgeContainerId = "lateScoreBadge" + (index === 0 ? "" : index + 1);
-        let badgeContainer = document.getElementById(badgeContainerId);
-        
-        if (badgeContainer) {
-            badgeContainer.style.backgroundColor = circleColor;
-            badgeContainer.style.borderRadius = "50%"; // Assures it renders as a circle if not handled in CSS
-        }
-    });
-}
+  // 1. Calculate absolute difference from the target goal
+  let diff = Math.abs(maxTotalCompressions - good_compression);
 
+  // 2. Set color based on your rule (Difference 0-10 = Green, otherwise Red)
+  let badgeColor = (diff <= 10) ? "#038660" : "#FF5058";
+
+  // 3. Array of all badge element IDs across your web app
+  const allBadges = [
+    // Your original Late screens
+    { badge: "lateScoreBadge",  value: "lateScoreValue",  denom: "lateScoreDenom"  },
+    { badge: "lateScoreBadge2", value: "lateScoreValue2", denom: "lateScoreDenom2" },
+    { badge: "lateScoreBadge3", value: "lateScoreValue3", denom: "lateScoreDenom3" },
+    { badge: "lateScoreBadge4", value: "lateScoreValue4", denom: "lateScoreDenom4" },
+    { badge: "lateScoreBadge5", value: "lateScoreValue5", denom: "lateScoreDenom5" },
+    { badge: "lateScoreBadge6", value: "lateScoreValue6", denom: "lateScoreDenom6" },
+    { badge: "lateScoreBadge7", value: "lateScoreValue7", denom: "lateScoreDenom7" },
+    { badge: "lateScoreBadge8", value: "lateScoreValue8", denom: "lateScoreDenom8" },
+    
+    // Your brand new individual Win/Amb/AED screens
+    { badge: "winRajaScoreBadge", value: "winRajaScoreValue", denom: "winRajaScoreDenom" },
+    { badge: "winRaniScoreBadge", value: "winRaniScoreValue", denom: "winRaniScoreDenom" },
+    { badge: "ambRajaScoreBadge", value: "ambRajaScoreValue", denom: "ambRajaScoreDenom" },
+    { badge: "ambRaniScoreBadge", value: "ambRaniScoreValue", denom: "ambRaniScoreDenom" },
+    { badge: "aedRajaScoreBadge", value: "aedRajaScoreValue", denom: "aedRajaScoreDenom" },
+    { badge: "aedRaniScoreBadge", value: "aedRaniScoreValue", denom: "aedRaniScoreDenom" }
+  ];
+
+  // 4. Update every badge that exists on the screen
+  allBadges.forEach(item => {
+    let badgeEl = document.getElementById(item.badge);
+    let valueEl = document.getElementById(item.value);
+    let denomEl = document.getElementById(item.denom);
+
+    if (badgeEl) {
+      badgeEl.style.backgroundColor = badgeColor;
+    }
+    if (valueEl) {
+      valueEl.textContent = good_compression;
+    }
+    if (denomEl) {
+      denomEl.textContent = "/" + maxTotalCompressions;
+    }
+  });
+}
 window.onload = () => {
     // --- Screen Element Definitions (Kept as is) ---
     const begin1 = document.getElementById("begin1");
