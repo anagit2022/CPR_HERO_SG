@@ -205,6 +205,7 @@ display: flex; /* show first screen by default */
   min-width: 72px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
+  border: 3px solid #ffffff;
   /* default: pinkish for low scores — overridden by JS */
   background: #C0667A;
   display: flex;
@@ -243,7 +244,7 @@ display: flex; /* show first screen by default */
 }
 
 .score-label {                          /* "Compression Score" */
-  font-size: 2vw;
+  font-size: 2.4vw;
   font-weight: 400;
   line-height: 1.25;
   margin-top: 3px;
