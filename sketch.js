@@ -1079,7 +1079,7 @@ function draw() {
         let vol = mic.getLevel();
         console.log("Volume:", vol);
 
-        if (vol > 0.4) {
+        if (vol > 0.2) {
             console.log("hi");
             listeningForResponse = false;
             clearTimeout(responseTimeout);
