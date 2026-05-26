@@ -88,7 +88,7 @@ function setup() {
   maxTotalCompressions = floor(random(30, 50));
   task_time = 600 * maxTotalCompressions+3000;
   mic = new p5.AudioIn();
-  mic.start();
+  //mic.start();
   imageMode(CENTER);
 }
 
@@ -360,6 +360,7 @@ window.onload = () => {
 
     const handleBegin = () => {
         userStartAudio();
+        mic.start();
         begin1.style.display = "none";
         gender.style.display = "flex";
     };
