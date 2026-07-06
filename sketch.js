@@ -13,7 +13,7 @@ let compression_count = 0;
 let now,interval;
 let lastTouchTime = 0;
 // log into google sheets - google app script
-const scriptURL = "https://script.google.com/macros/s/AKfycbz6sw15_zbj_qSxhWK4T9ZdzuvT8E3LB8YohZMDUaT8Aex3dNOrsptoHv9Y3ksbbcCfLw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxNVQSYjwBKOwIT8stzs-7oS4mOBfTWHkVzP_e0tr3QRfTm4_imeTxxDbV9qVfJclPLKg/exec";
 let sessionLogged = false;
 // play screen
 let cheekOpacity = 40;
