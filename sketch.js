@@ -1330,30 +1330,34 @@ async function logSession() {
     const now = new Date();
 
     let country = "Unknown";
+    let state = "Unknown";
+    let city = "Unknown";
 
     try {
 
         const response = await fetch("https://ipapi.co/json/");
         const location = await response.json();
 
-        country = location.country_name;
+        country = location.country_name || "Unknown";
+        state = location.region || "Unknown";
+        city = location.city || "Unknown";
 
     } catch (error) {
 
-        console.log("Couldn't get country");
+        console.log("Couldn't get location");
 
     }
 
     const data = {
 
         date: now.toLocaleDateString(),
-
         time: now.toLocaleTimeString(),
 
         country: country,
+        state: state,
+        city: city,
 
         goodCompressions: good_compression,
-
         targetCompressions: maxTotalCompressions
 
     };
