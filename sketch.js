@@ -467,6 +467,7 @@ window.onload = () => {
         cantdsafe.play();
         dnotsafeq.style.display = "none";
         dcantsafe.style.display = "flex";
+       logSession();
     };
     cantsafeBtn.onclick = handleCantSafe;
     cantsafeBtn.addEventListener('touchstart', handleCantSafe);
@@ -615,6 +616,7 @@ window.onload = () => {
         ifbreathnormalaud.play();
         checkbreathingtypeq.style.display = "none";
         normalbreathing.style.display = "flex";
+       logSession();
     };
     normalBtn.onclick = handleNormal;
     normalBtn.addEventListener('touchstart', handleNormal);
@@ -1094,6 +1096,7 @@ function draw() {
             respondedaud.play();
             checkrAudio.pause();
             checkrAudio.currentTime = 0;
+           logSession();
         }
     }
 
@@ -1254,6 +1257,7 @@ function handle_inactivity() {
         p5Screen.style.display = "none";
         lateinactive.style.display = "flex";
         lateaud.play();
+       logSession();
     }
 }
 
